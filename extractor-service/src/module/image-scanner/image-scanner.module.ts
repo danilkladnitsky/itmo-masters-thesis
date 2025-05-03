@@ -13,11 +13,15 @@ export const createImageScannerModule = (): IImageScannerModule => {
         scanImage: scanSingleImage,
         scanPdf: async (pdfBuffer) => {
             const document = await pdf(Buffer.from(pdfBuffer), { scale: 3 });
-            const firstPage = (await document.getPage(99)).buffer
 
-            const text = await scanSingleImage(firstPage);
+            const result = [];
 
-            return text;
+            for await (const page of document) {
+                const text = await scanSingleImage(page.buffer);
+                result.push(text);
+            }
+
+            return result.join("\n");
         },
     }
 }
