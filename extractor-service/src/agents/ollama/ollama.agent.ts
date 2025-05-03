@@ -3,21 +3,20 @@ import { Ollama } from "ollama";
 import type { IAgent } from "../types";
 import type { CreateOllamaAgent } from "./types";
 
-export const createOllamaAgent = ({ model, url, temperature = 0.5 }: CreateOllamaAgent): IAgent => {
+export const createOllamaAgent = ({ model, url }: CreateOllamaAgent): IAgent => {
     const ollama = new Ollama({ host: url });
 
     return {
-        generateText: async (input) => {
+        generateText: async (input, options) => {
             try {
-                const response = await ollama.chat({
+                const response = await ollama.generate({
                     model,
-                    messages: input,
-                    stream: false,
-                    options: { temperature },
+                    prompt: input.map(i => i.content).join("\n"),
+                    options: {  ...options, temperature: options?.temperature || 0.5, num_ctx: options?.maxTokens ?? undefined },
                 });
 
                 return {
-                    content: response.message.content,
+                    content: response.response,
                     ok: true,
                 };
             } catch (error) {

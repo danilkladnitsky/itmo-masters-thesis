@@ -10,3 +10,9 @@ export type LLMOutput = {
     ok: false;
     error: string;
 }
+
+export type LLMOptions = {
+    model: string;
+    temperature: number;
+    maxTokens: number;
+}

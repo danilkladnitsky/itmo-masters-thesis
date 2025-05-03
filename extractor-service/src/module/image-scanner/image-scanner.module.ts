@@ -12,7 +12,7 @@ export const createImageScannerModule = (): IImageScannerModule => {
     return {
         scanImage: scanSingleImage,
         scanPdf: async (pdfBuffer) => {
-            const document = await pdf(Buffer.from(pdfBuffer), { scale: 3 });
+            const document = await pdf(Buffer.from(pdfBuffer), { scale: 1 });
 
             const result = [];
 
