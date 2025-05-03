@@ -1,7 +1,9 @@
+import { createGeneratorController } from "@/controllers/text-generator/generator.controller";
 import { createOllamaAgent } from "@/agents/ollama/ollama.agent";
-import { createExtractController } from "@/controllers/extractor.controller";
 import { createTextGeneratorModule } from "@/module/text-generator/text-generator.module";
 import { createHttpTransport } from "@/transport/http/http.transport";
+import { createImageScannerModule } from "@/module/image-scanner/image-scanner.module";
+import { createImageScannerController } from "@/controllers/image-scanner/image-scanner.controller";
 
 
 const startApp = async () => {
@@ -9,13 +11,21 @@ const startApp = async () => {
         agent: createOllamaAgent({ model: "llama2-chinese:latest" }),
     });
 
-    const extractController = createExtractController({
+    const imageScannerModule = createImageScannerModule();
+
+
+    const generatorController = createGeneratorController({
         textGeneratorModule,
+    });
+
+    const imageScannerController = createImageScannerController({
+        imageScannerModule,
     });
 
     const httpTransport = createHttpTransport({
         port: 3000,
-        extractController
+        generatorController,
+        imageScannerController,
     });
 
     await httpTransport.start();

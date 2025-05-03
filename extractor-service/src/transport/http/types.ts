@@ -1,8 +1,10 @@
-import type { IExtractController } from "@/controllers/types";
+import type { IImageScannerController } from "@/controllers/image-scanner/types";
+import type { IGeneratorController } from "@/controllers/text-generator/types";
 
 export type CreateHttpTransport = {
     port: number;
-    extractController: IExtractController;
+    generatorController: IGeneratorController;
+    imageScannerController: IImageScannerController;
 }
 
 export interface IHttpTransport {

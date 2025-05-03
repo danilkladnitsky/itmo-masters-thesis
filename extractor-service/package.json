@@ -14,6 +14,7 @@
   "dependencies": {
     "ollama": "^0.5.15",
     "openai": "^4.97.0",
+    "tesseract.js": "^6.0.1",
     "ytdl-core": "^4.11.5"
   }
 }
