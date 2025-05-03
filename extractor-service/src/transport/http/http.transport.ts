@@ -17,6 +17,10 @@ export const createHttpTransport = ({ port, generatorController, imageScannerCon
                 return imageScannerController.scanImage(req);
             }
 
+            if (path === "/scan-pdf") {
+                return imageScannerController.scanPdf(req);
+            }
+
             return new Response("Not Found", { status: 404 });
         },
         routes: {

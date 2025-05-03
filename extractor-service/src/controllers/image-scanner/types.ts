@@ -7,4 +7,5 @@ export type CreateImageScannerController = {
 
 export interface IImageScannerController {
     scanImage: (request: Request) => Promise<Response>;
+    scanPdf: (request: Request) => Promise<Response>;
 }
