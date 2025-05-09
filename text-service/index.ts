@@ -7,6 +7,7 @@ import { createImageScannerController } from "@/controllers/image-scanner/image-
 import { createYoutubeCaptionsModule } from "@/module/youtube-captions/youtube-captions.module";
 import { createYoutubeCaptionsController } from "@/controllers/youtube-captions/youtube-captions.controller";
 import { createS3Module } from "@/module/s3/s3.modules";
+import { createOpenAIAgent } from "@/agents/openai/openai.agent";
 
 const S3_CONFIG = {
     region: process.env.S3_REGION || "",
@@ -17,8 +18,15 @@ const S3_CONFIG = {
 }
 
 const startApp = async () => {
+    const openai = createOpenAIAgent({
+        apiKey: process.env.OPENAI_API_KEY || "",
+        url: process.env.OPENAI_URL || "",
+        temperature: 0.7,
+    })
+    const ollama = createOllamaAgent({ model: "llama2-chinese:latest" })
+
     const textGeneratorModule = createTextGeneratorModule({
-        agent: createOllamaAgent({ model: "llama2-chinese:latest" }),
+        agent: openai,
     });
     const imageScannerModule = createImageScannerModule();
     const youtubeCaptionsModule = createYoutubeCaptionsModule();

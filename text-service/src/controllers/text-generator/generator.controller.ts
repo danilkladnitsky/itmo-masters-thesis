@@ -1,6 +1,6 @@
 import type { CreateGeneratorController, IGeneratorController } from "./types";
 
-export const createGeneratorController = ({ textGeneratorModule }: CreateGeneratorController): IGeneratorController => {
+export const createGeneratorController = ({ textGeneratorModule, s3Module }: CreateGeneratorController): IGeneratorController => {
     return {
         generateText: async (request) => {
             const payload = await request.json();
@@ -8,7 +8,9 @@ export const createGeneratorController = ({ textGeneratorModule }: CreateGenerat
             const result = await textGeneratorModule.generateText(payload);
 
             if(result.ok) {
-                return new Response(result.content);
+                const fileName = `${Date.now()}.txt`
+                const fileUrl = await s3Module.uploadTextFile(fileName, result.content)
+                return new Response(fileUrl);
             }
 
             return new Response(result.error, { status: 500 });
