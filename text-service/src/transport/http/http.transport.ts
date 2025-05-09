@@ -2,7 +2,7 @@
 import { serve } from "bun";
 import type { CreateHttpTransport } from "./types";
 
-export const createHttpTransport = ({ port, generatorController, imageScannerController }: CreateHttpTransport) => {
+export const createHttpTransport = ({ port, generatorController, imageScannerController, youtubeCaptionsController }: CreateHttpTransport) => {
     const app = serve({
         port,
         fetch(req) {
@@ -21,6 +21,10 @@ export const createHttpTransport = ({ port, generatorController, imageScannerCon
                 return imageScannerController.scanPdf(req);
             }
 
+            if (path === "/extract-captions") {
+                return youtubeCaptionsController.extractCaptions(req);
+            }
+
             return new Response("Not Found", { status: 404 });
         },
         routes: {
@@ -29,6 +33,9 @@ export const createHttpTransport = ({ port, generatorController, imageScannerCon
             },
             "/scan-image": {
                 POST: imageScannerController.scanImage
+            },
+            "/extract-captions": {
+                POST: youtubeCaptionsController.extractCaptions
             }
         }
     });

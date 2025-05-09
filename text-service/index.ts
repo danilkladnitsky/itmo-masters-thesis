@@ -4,6 +4,8 @@ import { createTextGeneratorModule } from "@/module/text-generator/text-generato
 import { createHttpTransport } from "@/transport/http/http.transport";
 import { createImageScannerModule } from "@/module/image-scanner/image-scanner.module";
 import { createImageScannerController } from "@/controllers/image-scanner/image-scanner.controller";
+import { createYoutubeCaptionsModule } from "@/module/youtube-captions/youtube-captions.module";
+import { createYoutubeCaptionsController } from "@/controllers/youtube-captions/youtube-captions.controller";
 
 
 const startApp = async () => {
@@ -13,6 +15,11 @@ const startApp = async () => {
 
     const imageScannerModule = createImageScannerModule();
 
+    const youtubeCaptionsModule = createYoutubeCaptionsModule();
+
+    const youtubeCaptionsController = createYoutubeCaptionsController({
+        youtubeCaptionsModule
+    });
 
     const generatorController = createGeneratorController({
         textGeneratorModule,
@@ -26,6 +33,7 @@ const startApp = async () => {
         port: 3000,
         generatorController,
         imageScannerController,
+        youtubeCaptionsController
     });
 
     await httpTransport.start();
