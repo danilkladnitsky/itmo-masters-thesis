@@ -1,5 +1,5 @@
 import Tesseract from "tesseract.js";
-import { pdf } from "pdf-to-img";
+// import { pdf } from "pdf-to-img";
 
 import type { IImageScannerModule } from "./types";
 
@@ -11,21 +11,6 @@ export const createImageScannerModule = (): IImageScannerModule => {
     }
     return {
         scanImage: scanSingleImage,
-        scanPdf: async (pdfBuffer) => {
-            const document = await pdf(Buffer.from(pdfBuffer), { scale: 1 });
-
-            const result = [];
-
-            let LIMIT = 5;
-            
-            for await (const page of document) {
-                if (LIMIT <= 0) break;
-                const text = await scanSingleImage(page.buffer);
-                result.push(text);
-                LIMIT--;
-            }
-
-            return result.join("\n");
-        },
+        scanPdf: async (pdfBuffer) => "not implemented",
     }
 }
