@@ -6,27 +6,38 @@ import { createImageScannerModule } from "@/module/image-scanner/image-scanner.m
 import { createImageScannerController } from "@/controllers/image-scanner/image-scanner.controller";
 import { createYoutubeCaptionsModule } from "@/module/youtube-captions/youtube-captions.module";
 import { createYoutubeCaptionsController } from "@/controllers/youtube-captions/youtube-captions.controller";
+import { createS3Module } from "@/module/s3/s3.modules";
 
+const S3_CONFIG = {
+    region: process.env.S3_REGION || "",
+    bucketName: process.env.S3_BUCKET || "",
+    url: process.env.S3_URL || "",
+    accessKeyId: process.env.S3_ACCESS_KEY_ID || "",
+    secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || ""
+}
 
 const startApp = async () => {
     const textGeneratorModule = createTextGeneratorModule({
         agent: createOllamaAgent({ model: "llama2-chinese:latest" }),
     });
-
     const imageScannerModule = createImageScannerModule();
-
     const youtubeCaptionsModule = createYoutubeCaptionsModule();
 
-    const youtubeCaptionsController = createYoutubeCaptionsController({
-        youtubeCaptionsModule
+    const s3Module = createS3Module({
+        ...S3_CONFIG
     });
 
+    const youtubeCaptionsController = createYoutubeCaptionsController({
+        youtubeCaptionsModule,
+        s3Module
+    });
     const generatorController = createGeneratorController({
         textGeneratorModule,
+        s3Module
     });
-
     const imageScannerController = createImageScannerController({
         imageScannerModule,
+        s3Module
     });
 
     const httpTransport = createHttpTransport({
