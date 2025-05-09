@@ -12,7 +12,6 @@ export const createS3Module = ({region, bucketName, url, accessKeyId, secretAcce
         }
     })
 
-
     return {
         uploadTextFile: async (fileName: string, content: string) => {
             const command = new PutObjectCommand({ Bucket: bucketName, Key: fileName, Body: content })

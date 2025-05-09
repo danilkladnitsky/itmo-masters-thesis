@@ -1,7 +1,7 @@
 import type { IAgent } from "../types";
 import type { CreateOpenAIAgent } from "./types";
 
-import OpenAI from "openai"
+import OpenAI from "openai/index.mjs"
 
 export const createOpenAIAgent = ({ apiKey, url, temperature }: CreateOpenAIAgent): IAgent => {
     const openai = new OpenAI({ apiKey, baseURL: url })
