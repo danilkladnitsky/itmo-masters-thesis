@@ -16,9 +16,13 @@ export const createImageScannerModule = (): IImageScannerModule => {
 
             const result = [];
 
+            let LIMIT = 5;
+            
             for await (const page of document) {
+                if (LIMIT <= 0) break;
                 const text = await scanSingleImage(page.buffer);
                 result.push(text);
+                LIMIT--;
             }
 
             return result.join("\n");

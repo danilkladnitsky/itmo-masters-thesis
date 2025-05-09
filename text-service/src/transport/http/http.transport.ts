@@ -36,6 +36,9 @@ export const createHttpTransport = ({ port, generatorController, imageScannerCon
             },
             "/extract-captions": {
                 POST: youtubeCaptionsController.extractCaptions
+            },
+            "/scan-pdf": {
+                POST: imageScannerController.scanPdf
             }
         }
     });
