@@ -1,5 +1,5 @@
 # Build stage
-FROM oven/bun:1.1.21
+FROM oven/bun:1.2.13
 WORKDIR /app
 COPY package.json bun.lockb ./
 RUN bun install --frozen-lockfile

@@ -11,14 +11,14 @@
     "@types/bun": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.802.0",
+    "@aws-sdk/client-s3": "^3.806.0",
     "@langchain/community": "^0.3.42",
     "@langchain/core": "^0.3.55",
     "ollama": "^0.5.15",
-    "openai": "^4.97.0",
+    "openai": "^4.98.0",
     "tesseract.js": "^6.0.1",
     "youtubei.js": "^13.4.0",
     "ytdl-core": "^4.11.5"
