@@ -3,7 +3,6 @@ import type { TextGenerateInput } from "@/module/text-generator/types";
 import type { CreateDatasetController, IDatasetController } from "./types";
 import type { DatasetResources, PromptResource, YoutubeVideoResource } from "@/common/types";
 import { v4 as uuidv4 } from 'uuid';
-import { normalizeGeneratedText } from "@/helpers/normalizeGeneratedText";
 
 export const createDatasetController = ({imageScannerModule, textGeneratorModule, s3Module, youtubeCaptionsModule}: CreateDatasetController): IDatasetController => {
     const processYoutubeVideos = async (videoUrlList: YoutubeVideoResource[], modelName: string) => {
@@ -11,7 +10,7 @@ export const createDatasetController = ({imageScannerModule, textGeneratorModule
             const captions = await youtubeCaptionsModule.extractCaptions(video.url);
             const filename = `${modelName}/${uuidv4()}.txt`;
 
-            s3Module.uploadTextFile(filename, normalizeGeneratedText(captions));
+            s3Module.uploadTextFile(filename, captions);
         }));
 
     }
@@ -31,7 +30,7 @@ export const createDatasetController = ({imageScannerModule, textGeneratorModule
 
             const filename = `${modelName}/${uuidv4()}.txt`;
 
-            s3Module.uploadTextFile(filename, normalizeGeneratedText(result.content));
+            s3Module.uploadTextFile(filename, result.content);
         }));
     }
     return {
