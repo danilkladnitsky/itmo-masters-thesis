@@ -35,7 +35,7 @@ export const CreateModelWidget = () => {
         description: '',
         hskLevel: '',
     });
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading] = useState(false);
 
     const handleAddImages = (payload: ImageFile[]) => {
         setModelData({...modelData, images: payload});

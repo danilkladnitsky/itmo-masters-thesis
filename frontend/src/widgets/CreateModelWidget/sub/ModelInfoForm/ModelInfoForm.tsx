@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import {Button, RadioGroup, RadioGroupOption, Text, TextArea, TextInput} from '@gravity-ui/uikit';
-import {useState} from 'react';
 import {ModelData} from '../../CreateModelWidget';
 
 const FormStyled = styled.div`
