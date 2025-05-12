@@ -2,27 +2,38 @@
 import { serve } from "bun";
 import type { CreateHttpTransport } from "./types";
 
+const corsHeaders = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type"
+}
+
 export const createHttpTransport = ({ port, generatorController, imageScannerController, youtubeCaptionsController, datasetController }: CreateHttpTransport) => {
     const app = serve({
         port,
         routes: {
             "/ping": {
-                GET: () => new Response("pong", { status: 200 })
+                GET: () => new Response("pong", { status: 200, headers: corsHeaders })
             },
             "/generate-text": {
-                POST: generatorController.generateText
+                POST: generatorController.generateText,
+                OPTIONS: () => new Response(null, { status: 204, headers: corsHeaders })
             },
             "/scan-image": {
-                POST: imageScannerController.scanImage
+                POST: imageScannerController.scanImage,
+                OPTIONS: () => new Response(null, { status: 204, headers: corsHeaders })
             },
             "/extract-captions": {
-                POST: youtubeCaptionsController.extractCaptions
+                POST: youtubeCaptionsController.extractCaptions,
+                OPTIONS: () => new Response(null, { status: 204, headers: corsHeaders })
             },
             "/scan-pdf": {
-                POST: imageScannerController.scanPdf
+                POST: imageScannerController.scanPdf,
+                OPTIONS: () => new Response(null, { status: 204, headers: corsHeaders })
             },
             "/create-dataset": {
-                POST: datasetController.createDataset
+                POST: datasetController.createDataset,
+                OPTIONS: () => new Response(null, { status: 204, headers: corsHeaders })
             }
         }
     });
