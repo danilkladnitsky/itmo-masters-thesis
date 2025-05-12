@@ -16,7 +16,7 @@ const Container = styled.div`
     gap: 20px;
     padding: 20px;
     width: 500px;
-    height: 300px;
+    height: 500px;
     margin: 0 auto;
 
     @media (max-width: 768px) {
@@ -44,6 +44,7 @@ const OptionsContainer = styled.div`
     gap: 10px;
     align-items: flex-end;
     justify-content: center;
+    flex: 1 1;
 `;
 
 const OptionButton = styled(Button)`
@@ -54,13 +55,13 @@ const SubmitButton = styled(Button)`
     width: 100%;
 `;
 
-const ProgressContainer = styled(Progress)`
+const ProgressContainer = styled.div`
     width: 100%;
     flex: 1 1;
-`;
-
-const ModelName = styled(Text)`
-    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
 `;
 
 export const FillGapsWidget = ({sentence, options, onSubmit}: FillGapsWidgetProps) => {
@@ -80,10 +81,10 @@ export const FillGapsWidget = ({sentence, options, onSubmit}: FillGapsWidgetProp
 
     return (
         <Container>
-            <ModelName>
+            <ProgressContainer>
                 <Text variant="body-1">model: bert_hsk3</Text>
-            </ModelName>
-            <ProgressContainer />
+                <Progress />
+            </ProgressContainer>
             <Text variant="body-3">Вставьте пропуск в предложении:</Text>
             <SentenceContainer>
                 {parts.map((part, index) => (

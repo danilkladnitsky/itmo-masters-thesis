@@ -8,7 +8,7 @@ const ProgressContainer = styled.div`
 export const Progress = () => {
     return (
         <ProgressContainer>
-            <ProgressUI theme="info" value={50} text="6/10" />
+            <ProgressUI theme="info" value={50} size="s" />
         </ProgressContainer>
     );
 };

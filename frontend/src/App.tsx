@@ -5,6 +5,7 @@ import {AppLayout} from './layout/AppLayout';
 import {FillGapsPage} from './pages/FillGapsPage/FillGapsPage';
 import {Header} from './components/Header/Header';
 import {SelectModelPage} from './pages/SelectModelPage/SelectModelPage';
+import {CreateModelPage} from './pages/CreateModelPage/CreateModelPage';
 
 const App = () => {
     return (
@@ -13,6 +14,7 @@ const App = () => {
             <AppLayout>
                 <BrowserRouter>
                     <Routes>
+                        <Route path="/" index element={<CreateModelPage />} />
                         <Route path="/task/:modelId" element={<FillGapsPage />} />
                         <Route path="/select-model" element={<SelectModelPage />} />
                     </Routes>
