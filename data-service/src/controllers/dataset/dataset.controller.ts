@@ -39,12 +39,14 @@ export const createDatasetController = ({imageScannerModule, textGeneratorModule
             const payload = await request.json();
             const { modelName, modelDescription, hskLevel, promptList, videoUrlList, images } = payload as DatasetResources;
 
+            const folderName = `${modelName}/${uuidv4()}`;
+
             if (videoUrlList?.length) {
-                await processYoutubeVideos(videoUrlList, modelName);
+                await processYoutubeVideos(videoUrlList, folderName);
             }
 
             if (promptList?.length) {
-                await processPrompts(promptList, hskLevel, modelName);
+                await processPrompts(promptList, hskLevel, folderName);
             }
 
             return new Response("Dataset created", { status: 200 });
