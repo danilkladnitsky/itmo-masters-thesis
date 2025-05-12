@@ -13,9 +13,9 @@ pip install -r requirements.txt
 
 2. Set up environment variables:
 ```bash
-export AWS_ACCESS_KEY_ID=your_access_key
-export AWS_SECRET_ACCESS_KEY=your_secret_key
-export AWS_REGION=your_region  # optional, defaults to us-east-1
+export S3_ACCESS_KEY_ID=your_access_key
+export S3_SECRET_ACCESS_KEY=your_secret_key
+export S3_REGION=your_region  # optional, defaults to us-east-1
 ```
 
 3. Run the service:
@@ -33,9 +33,9 @@ docker build -t model-training-service .
 2. Run the container:
 ```bash
 docker run -p 8000:8000 \
-  -e AWS_ACCESS_KEY_ID=your_access_key \
-  -e AWS_SECRET_ACCESS_KEY=your_secret_key \
-  -e AWS_REGION=your_region \
+  -e S3_ACCESS_KEY_ID=your_access_key \
+  -e S3_SECRET_ACCESS_KEY=your_secret_key \
+  -e S3_REGION=your_region \
   model-training-service
 ```
 
