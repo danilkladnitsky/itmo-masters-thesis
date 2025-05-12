@@ -9,6 +9,10 @@ export const createHttpTransport = ({ port, generatorController, imageScannerCon
             const url = new URL(req.url);
             const path = url.pathname;
 
+            if (path === "/") {
+                return new Response("Hello, world!", { status: 200 });
+            }
+
             if (path === "/generate-text") {
                 return generatorController.generateText(req);
             }
