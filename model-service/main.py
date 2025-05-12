@@ -2,8 +2,9 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import boto3
 import os
-from typing import List
 import logging
+from train.train import ChineseBERTTrainer
+import tempfile
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -21,6 +22,11 @@ s3_client = boto3.client(
 
 class TrainingRequest(BaseModel):
     dataset_url: str
+    model_output_url: str
+    num_labels: int = 2
+    batch_size: int = 16
+    epochs: int = 3
+    learning_rate: float = 2e-5
 
 def parse_s3_url(url: str) -> tuple:
     """Parse S3 URL to get bucket and prefix."""
@@ -33,24 +39,6 @@ def parse_s3_url(url: str) -> tuple:
     
     return bucket, prefix
 
-def get_dataset_files(bucket: str, prefix: str) -> List[str]:
-    """Get all .txt files from the specified S3 prefix."""
-    try:
-        response = s3_client.list_objects_v2(
-            Bucket=bucket,
-            Prefix=prefix
-        )
-        
-        files = []
-        for obj in response.get('Contents', []):
-            if obj['Key'].endswith('.txt'):
-                files.append(obj['Key'])
-        
-        return files
-    except Exception as e:
-        logger.error(f"Error listing S3 objects: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Error accessing S3: {str(e)}")
-
 @app.get("/health")
 async def health_check():
     """Health check endpoint."""
@@ -62,32 +50,44 @@ async def train_model(request: TrainingRequest):
     Endpoint to start model training using dataset from S3.
     
     Args:
-        request: TrainingRequest containing the S3 URL to the dataset folder
+        request: TrainingRequest containing the S3 URLs and training parameters
     """
     try:
-        # Parse S3 URL
-        bucket, prefix = parse_s3_url(request.dataset_url)
+        # Parse S3 URLs
+        dataset_bucket, dataset_prefix = parse_s3_url(request.dataset_url)
+        output_bucket, output_prefix = parse_s3_url(request.model_output_url)
         
-        # Get dataset files
-        dataset_files = get_dataset_files(bucket, prefix)
+        # Initialize trainer
+        trainer = ChineseBERTTrainer(num_labels=request.num_labels)
         
-        if not dataset_files:
+        # Download and prepare data
+        texts, labels = trainer.download_and_prepare_data(dataset_bucket, dataset_prefix)
+        
+        if not texts:
             raise HTTPException(
                 status_code=404,
-                detail="No .txt files found in the specified S3 location"
+                detail="No valid data found in the specified S3 location"
             )
         
-        # TODO: Implement your model training logic here
-        # This is where you would:
-        # 1. Download the files from S3
-        # 2. Process the data
-        # 3. Train your model
-        # 4. Save the model
+        # Create temporary directory for model output
+        with tempfile.TemporaryDirectory() as temp_dir:
+            # Train model
+            training_result = trainer.train(
+                texts=texts,
+                labels=labels,
+                output_dir=temp_dir,
+                batch_size=request.batch_size,
+                epochs=request.epochs,
+                learning_rate=request.learning_rate
+            )
+            
+            # Save model to S3
+            trainer.save_model_to_s3(temp_dir, output_bucket, output_prefix)
         
         return {
-            "status": "training_started",
-            "dataset_files": dataset_files,
-            "message": "Model training process initiated"
+            "status": "success",
+            "training_result": training_result,
+            "model_location": request.model_output_url
         }
         
     except ValueError as e:
