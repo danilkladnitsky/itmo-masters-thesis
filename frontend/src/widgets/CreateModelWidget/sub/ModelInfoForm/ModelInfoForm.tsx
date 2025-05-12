@@ -27,9 +27,15 @@ interface ModelInfoFormProps {
     modelData: Pick<ModelData, 'name' | 'description' | 'hskLevel'>;
     onFormChange: (modelData: Pick<ModelData, 'name' | 'description' | 'hskLevel'>) => void;
     onSubmit: () => void;
+    isLoading: boolean;
 }
 
-export const ModelInfoForm = ({modelData, onFormChange, onSubmit}: ModelInfoFormProps) => {
+export const ModelInfoForm = ({
+    modelData,
+    onFormChange,
+    onSubmit,
+    isLoading = false,
+}: ModelInfoFormProps) => {
     const handleChange = (key: keyof ModelData, value: string) => {
         onFormChange({...modelData, [key]: value});
     };
@@ -59,7 +65,13 @@ export const ModelInfoForm = ({modelData, onFormChange, onSubmit}: ModelInfoForm
                 value={modelData.hskLevel}
                 onChange={(e) => handleChange('hskLevel', e.target.value)}
             />
-            <SubmitButtonStyled size="xl" view="action" onClick={() => onSubmit()}>
+            <SubmitButtonStyled
+                size="xl"
+                view="action"
+                onClick={() => onSubmit()}
+                disabled={isLoading}
+                loading={isLoading}
+            >
                 Создать модель
             </SubmitButtonStyled>
         </FormStyled>

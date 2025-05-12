@@ -35,6 +35,7 @@ export const CreateModelWidget = () => {
         description: '',
         hskLevel: '',
     });
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleAddImages = (payload: ImageFile[]) => {
         setModelData({...modelData, images: payload});
@@ -80,6 +81,7 @@ export const CreateModelWidget = () => {
                             modelData={modelData}
                             onFormChange={onFormChange}
                             onSubmit={handleSubmit}
+                            isLoading={isLoading}
                         />
                     </TabPanel>
                     <TabPanel value="youtube">
