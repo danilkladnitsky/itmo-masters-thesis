@@ -16,3 +16,27 @@ export type LLMOptions = {
     temperature: number;
     maxTokens: number;
 }
+
+export type ImageResource = {
+    id: string;
+    file: File;
+}
+
+export type YoutubeVideoResource = {
+    id: string;
+    url: string;
+}
+
+export type PromptResource = {
+    id: string;
+    text: string;
+}
+
+export type DatasetResources = {
+    modelName: string;
+    modelDescription: string;
+    hskLevel: number;
+    promptList?: PromptResource[];
+    videoUrlList?: YoutubeVideoResource[];
+    images?: ImageResource[];
+}

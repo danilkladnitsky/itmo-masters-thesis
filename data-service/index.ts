@@ -8,6 +8,7 @@ import { createYoutubeCaptionsModule } from "@/module/youtube-captions/youtube-c
 import { createYoutubeCaptionsController } from "@/controllers/youtube-captions/youtube-captions.controller";
 import { createS3Module } from "@/module/s3/s3.modules";
 import { createOpenAIAgent } from "@/agents/openai/openai.agent";
+import { createDatasetController } from "@/controllers/dataset/dataset.controller";
 
 const S3_CONFIG = {
     region: process.env.S3_REGION || "",
@@ -35,6 +36,14 @@ const startApp = async () => {
         ...S3_CONFIG
     });
 
+    const datasetController = createDatasetController({
+        imageScannerModule,
+        textGeneratorModule,
+        s3Module,
+        youtubeCaptionsModule
+    });
+
+
     const youtubeCaptionsController = createYoutubeCaptionsController({
         youtubeCaptionsModule,
         s3Module
@@ -52,7 +61,8 @@ const startApp = async () => {
         port: 3000,
         generatorController,
         imageScannerController,
-        youtubeCaptionsController
+        youtubeCaptionsController,
+        datasetController
     });
 
     await httpTransport.start();

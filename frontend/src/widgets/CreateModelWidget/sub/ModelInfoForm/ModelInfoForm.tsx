@@ -17,9 +17,9 @@ const SubmitButtonStyled = styled(Button)`
 `;
 
 const options: RadioGroupOption[] = [
-    {value: 'hsk_1', content: 'HSK 1'},
-    {value: 'hsk_2', content: 'HSK 2'},
-    {value: 'hsk_3', content: 'HSK 3'},
+    {value: '1', content: 'HSK 1'},
+    {value: '2', content: 'HSK 2'},
+    {value: '3', content: 'HSK 3'},
 ];
 
 interface ModelInfoFormProps {
@@ -61,7 +61,7 @@ export const ModelInfoForm = ({
             <RadioGroup
                 size="l"
                 options={options}
-                value={modelData.hskLevel}
+                value={modelData.hskLevel.toString()}
                 onChange={(e) => handleChange('hskLevel', e.target.value)}
             />
             <SubmitButtonStyled

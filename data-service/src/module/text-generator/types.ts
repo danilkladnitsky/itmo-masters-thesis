@@ -4,6 +4,7 @@ import type { LLMOptions, LLMOutput } from "@/common/types";
 export type TextGenerateInput = {
     hsk: number;
     subject?: string;
+    extraInstructions?: string;
     options?: Partial<LLMOptions>;
 }
 

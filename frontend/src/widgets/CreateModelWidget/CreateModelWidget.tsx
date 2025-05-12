@@ -22,7 +22,7 @@ export interface ModelData {
     prompts: Prompt[];
     name: string;
     description: string;
-    hskLevel: string;
+    hskLevel: number;
 }
 
 export const CreateModelWidget = () => {
@@ -33,7 +33,7 @@ export const CreateModelWidget = () => {
         prompts: [],
         name: '',
         description: '',
-        hskLevel: '',
+        hskLevel: 1,
     });
     const [isLoading] = useState(false);
 
@@ -58,8 +58,6 @@ export const CreateModelWidget = () => {
             description: data.description,
             hskLevel: data.hskLevel,
         }));
-
-        console.log(data);
     };
 
     const handleSubmit = () => {

@@ -2,10 +2,10 @@
 import { serve } from "bun";
 import type { CreateHttpTransport } from "./types";
 
-export const createHttpTransport = ({ port, generatorController, imageScannerController, youtubeCaptionsController }: CreateHttpTransport) => {
+export const createHttpTransport = ({ port, generatorController, imageScannerController, youtubeCaptionsController, datasetController }: CreateHttpTransport) => {
     const app = serve({
         port,
-        fetch(req) {
+        async fetch(req) {
             const url = new URL(req.url);
             const path = url.pathname;
 
@@ -25,6 +25,10 @@ export const createHttpTransport = ({ port, generatorController, imageScannerCon
                 return youtubeCaptionsController.extractCaptions(req);
             }
 
+            if (path === "/create-dataset") {
+                return datasetController.createDataset(req);
+            }
+
             return new Response("Not Found", { status: 404 });
         },
         routes: {
@@ -39,6 +43,9 @@ export const createHttpTransport = ({ port, generatorController, imageScannerCon
             },
             "/scan-pdf": {
                 POST: imageScannerController.scanPdf
+            },
+            "/create-dataset": {
+                POST: datasetController.createDataset
             }
         }
     });
