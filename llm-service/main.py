@@ -18,7 +18,7 @@ app = FastAPI(title="Model Training Service")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Не "*" для production!
+    allow_origins=["https://master-thesis.kladnitsky.ru", "http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
