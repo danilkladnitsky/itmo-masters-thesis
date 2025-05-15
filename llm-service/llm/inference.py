@@ -22,16 +22,18 @@ class ChineseSentenceGenerator:
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.model.to(self.device)
 
-        # Ensure pad token is defined
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
+            self.model.config.pad_token_id = self.tokenizer.eos_token_id
+        else:
             self.model.config.pad_token_id = self.tokenizer.pad_token_id
+
+        if self.model.config.eos_token_id is None:
             self.model.config.eos_token_id = self.tokenizer.eos_token_id
 
     def generate(self, prompt: str, max_length: int = 60, num_return_sequences: int = 1) -> list:
         inputs = self.tokenizer(prompt, return_tensors="pt").to(self.device)
 
-        print(prompt)
 
         with torch.no_grad():
             outputs = self.model.generate(
@@ -41,10 +43,11 @@ class ChineseSentenceGenerator:
                 do_sample=True,
                 top_k=50,
                 top_p=0.95,
-                temperature=0.7,
+                temperature=0.4,
                 num_return_sequences=num_return_sequences,
-                pad_token_id=self.tokenizer.pad_token_id,
-                eos_token_id=self.tokenizer.eos_token_id,
+                pad_token_id=self.model.config.pad_token_id,
+                eos_token_id=self.model.config.eos_token_id,
+                repetition_penalty=1.1
             )
 
         results = []
