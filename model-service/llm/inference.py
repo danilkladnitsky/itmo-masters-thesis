@@ -14,10 +14,9 @@ def sanitize_sentence(text: str) -> str:
 
 
 class ChineseSentenceGenerator:
-    def __init__(self, model_name: str, device: str = None):
-        path = f"../models/{model_name}"
-        self.tokenizer = AutoTokenizer.from_pretrained(path)
-        self.model = GPT2LMHeadModel.from_pretrained(path)
+    def __init__(self, model_path: str, device: str = None):
+        self.tokenizer = AutoTokenizer.from_pretrained(model_path)
+        self.model = GPT2LMHeadModel.from_pretrained(model_path)
 
         self.model.eval()
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
