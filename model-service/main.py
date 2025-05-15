@@ -53,6 +53,7 @@ async def generate_text(request: GenerationRequest):
     try:
         model_loader = ModelS3Loader(bucket_name=os.getenv('S3_BUCKET'), local_base_dir="../models")
         model_path = model_loader.load(model_name=request.model_name)
+        print(f"[ModelS3Loader] Model loaded: {model_path}")
     except Exception as e:
         logger.error(f"Error during model loading: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
