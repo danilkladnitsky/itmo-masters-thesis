@@ -23,7 +23,7 @@ class TrainingRequest(BaseModel):
 
 class GenerationRequest(BaseModel):
     model_name: str
-    input_word: str
+    prompt: str
     max_length: int = 60
     num_return_sequences: int = 1
 
@@ -71,7 +71,7 @@ async def generate_text(request: GenerationRequest):
         
         # Generate text
         generated_sentences = generator.generate(
-            word=request.input_word,
+            prompt=request.prompt,
             max_length=request.max_length,
             num_return_sequences=request.num_return_sequences
         )

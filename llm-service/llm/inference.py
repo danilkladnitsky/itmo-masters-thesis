@@ -28,9 +28,10 @@ class ChineseSentenceGenerator:
             self.model.config.pad_token_id = self.tokenizer.pad_token_id
             self.model.config.eos_token_id = self.tokenizer.eos_token_id
 
-    def generate(self, word: str, max_length: int = 60, num_return_sequences: int = 1) -> list:
-        prompt = f"输入词语：{word}。生成句子:"
+    def generate(self, prompt: str, max_length: int = 60, num_return_sequences: int = 1) -> list:
         inputs = self.tokenizer(prompt, return_tensors="pt").to(self.device)
+
+        print(prompt)
 
         with torch.no_grad():
             outputs = self.model.generate(
@@ -40,19 +41,18 @@ class ChineseSentenceGenerator:
                 do_sample=True,
                 top_k=50,
                 top_p=0.95,
-                temperature=0.5,
+                temperature=0.7,
                 num_return_sequences=num_return_sequences,
                 pad_token_id=self.tokenizer.pad_token_id,
                 eos_token_id=self.tokenizer.eos_token_id,
-                repetition_penalty=1.2
             )
 
         results = []
         for output in outputs:
             decoded = self.tokenizer.decode(output, skip_special_tokens=True)
+            print(decoded)
             # remove all spaces
             decoded = decoded.replace(" ", "")
-            print(decoded)
             sentence = sanitize_sentence(decoded)
             results.append(sentence)
 
