@@ -51,8 +51,8 @@ async def generate_text(request: GenerationRequest):
     model_path = None
 
     try:
-        model_loader = ModelS3Loader(request.model_name)
-        model_path = model_loader.load()
+        model_loader = ModelS3Loader(bucket_name=os.getenv('S3_BUCKET'), local_base_dir="../models")
+        model_path = model_loader.load(model_name=request.model_name)
     except Exception as e:
         logger.error(f"Error during model loading: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
