@@ -5,7 +5,7 @@ import logging
 from llm.inference import ChineseSentenceGenerator
 from s3.loader import ModelS3Loader
 from dotenv import load_dotenv
-
+from fastapi.middleware.cors import CORSMiddleware
 load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
@@ -13,6 +13,14 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Model Training Service")
 
+# disable cors
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 class TrainingRequest(BaseModel):
     dataset_url: str
     model_output_url: str
@@ -26,6 +34,10 @@ class GenerationRequest(BaseModel):
     prompt: str
     max_length: int = 60
     num_return_sequences: int = 1
+
+class GapsTaskRequest(BaseModel):
+    model_name: str
+    word: str
 
 def parse_s3_url(url: str) -> tuple:
     """Parse S3 URL to get bucket and prefix."""
@@ -42,6 +54,47 @@ def parse_s3_url(url: str) -> tuple:
 async def health_check():
     """Health check endpoint."""
     return {"status": "healthy"}
+
+@app.post("/generate-gaps")
+async def generate_gaps(request: GapsTaskRequest):
+    """
+    Endpoint to generate gaps in a Chinese sentence.
+    
+    Args:
+        request: GenerationRequest containing the model name, prompt, and generation parameters
+    """
+
+    model_path = None
+    try:
+        model_loader = ModelS3Loader(bucket_name=os.getenv('S3_BUCKET'), local_base_dir="./models")
+        model_path = model_loader.load(model_name=request.model_name)
+        print(f"[ModelS3Loader] Model loaded: {model_path}")
+    except Exception as e:
+        logger.error(f"Error during model loading: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+    
+    try:
+        generator = ChineseSentenceGenerator(
+            model_path=str(model_path),
+            device=os.getenv('DEVICE', None)
+        )
+
+        prompt = f"请用词语“{request.word}”造句："
+        print(f"[GapsTask] Prompt: {prompt}")
+        generated_sentences = generator.generate(
+            prompt=prompt,
+            max_length=100,
+            num_return_sequences=5
+        )
+        
+        return {
+            "status": "success",
+            "generated_sentences": generated_sentences
+        }
+    
+    except Exception as e:
+        logger.error(f"Error during gaps task generation: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/generate")
 async def generate_text(request: GenerationRequest):

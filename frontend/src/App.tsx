@@ -6,20 +6,25 @@ import {FillGapsPage} from './pages/FillGapsPage/FillGapsPage';
 import {Header} from './components/Header/Header';
 import {SelectModelPage} from './pages/SelectModelPage/SelectModelPage';
 import {CreateModelPage} from './pages/CreateModelPage/CreateModelPage';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+const queryClient = new QueryClient();
 const App = () => {
     return (
         <ThemeProvider theme="dark">
+            <QueryClientProvider client={queryClient}>
             <Header />
             <AppLayout>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" index element={<CreateModelPage />} />
-                        <Route path="/task/:modelId" element={<FillGapsPage />} />
+                        <Route path="/" index element={<FillGapsPage />} />
+                        <Route path="/create-model" element={<CreateModelPage />} />
                         <Route path="/select-model" element={<SelectModelPage />} />
                     </Routes>
                 </BrowserRouter>
             </AppLayout>
+            </QueryClientProvider>
+            
         </ThemeProvider>
     );
 };

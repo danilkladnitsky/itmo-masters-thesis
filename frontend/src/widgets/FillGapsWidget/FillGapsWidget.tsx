@@ -7,6 +7,7 @@ interface FillGapsWidgetProps {
     sentence: string;
     options: string[];
     onSubmit: (text: string) => void;
+    isLoading: boolean;
 }
 
 const Container = styled.div`
@@ -64,7 +65,7 @@ const ProgressContainer = styled.div`
     gap: 4px;
 `;
 
-export const FillGapsWidget = ({sentence, options, onSubmit}: FillGapsWidgetProps) => {
+export const FillGapsWidget = ({sentence, options, onSubmit, isLoading}: FillGapsWidgetProps) => {
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
     const handleOptionClick = (option: string) => {
@@ -102,6 +103,8 @@ export const FillGapsWidget = ({sentence, options, onSubmit}: FillGapsWidgetProp
                         onClick={() => handleOptionClick(option)}
                         size="xl"
                         view="outlined"
+                        isLoading={isLoading}
+                        disabled={isLoading}
                     >
                         <span>{option}</span>
                     </OptionButton>
@@ -109,10 +112,11 @@ export const FillGapsWidget = ({sentence, options, onSubmit}: FillGapsWidgetProp
             </OptionsContainer>
             <SubmitButton
                 width="max"
-                disabled={!selectedOption}
+                disabled={!selectedOption || isLoading}
                 size="xl"
                 view="action"
                 onClick={handleSubmit}
+                isLoading={isLoading}
             >
                 Дальше
             </SubmitButton>

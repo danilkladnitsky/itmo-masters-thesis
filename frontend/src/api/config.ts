@@ -1,0 +1,1 @@
+export const API_URL = 'https://llm-service.master-thesis.kladnitsky.ru';
