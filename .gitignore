@@ -4,9 +4,16 @@
 
 
 
-**/model.safetensors
+**/models/**
 **/checkpoint-**
 
 **/cached_**
 **/spiece.model
 **/vocab.txt
+
+
+
+
+notebooks/s3.ipynb
+
+__pycache__/
