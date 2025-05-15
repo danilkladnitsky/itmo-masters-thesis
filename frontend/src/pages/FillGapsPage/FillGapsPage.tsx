@@ -15,7 +15,7 @@ export const FillGapsPage = () => {
 
   const [sentence, setSentence] = useState('');
   const [options, setOptions] = useState<string[]>([]);
-  const [modelName, setModelName] = useState('hsk1-gpt2-jieba');
+  const [modelName] = useState('hsk1-gpt2-jieba');
   const [answer, setAnswer] = useState('');
   const [rightAnswer, setRightAnswer] = useState<string>('');
   const [isError, setIsError] = useState(false);
