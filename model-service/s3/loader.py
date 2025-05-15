@@ -30,7 +30,8 @@ class ModelS3Loader:
             print(f"[ModelS3Loader] Model not found locally. Downloading from S3...")
             self._download_model_from_s3(model_name, local_model_dir)
 
-        return local_model_dir
+        print(f"[ModelS3Loader] Model loaded: {local_model_dir}")
+        return model_name
 
     def _download_model_from_s3(self, model_name: str, target_dir: Path):
         """
