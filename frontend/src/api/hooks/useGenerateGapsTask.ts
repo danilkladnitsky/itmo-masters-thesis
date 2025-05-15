@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { API_URL } from '../config';
 
 type Request = {
-    model_name: string;
+    inference_model_name: string;
     word: string;
 }
 

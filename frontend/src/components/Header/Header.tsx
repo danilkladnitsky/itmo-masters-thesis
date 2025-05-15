@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {Text} from '@gravity-ui/uikit';
+import { Text } from '@gravity-ui/uikit';
 
 const HeaderStyled = styled.div`
     display: flex;
@@ -12,7 +12,7 @@ const HeaderStyled = styled.div`
 export const Header = () => {
     return (
         <HeaderStyled>
-            <Text variant="header-1">DaiMao</Text>
+            <Text variant="header-1">Artem Baytit Menya</Text>
         </HeaderStyled>
     );
 };

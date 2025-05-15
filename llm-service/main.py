@@ -23,22 +23,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-class TrainingRequest(BaseModel):
-    dataset_url: str
-    model_output_url: str
-    num_labels: int = 2
-    batch_size: int = 16
-    epochs: int = 3
-    learning_rate: float = 2e-5
 
 class GenerationRequest(BaseModel):
-    model_name: str
+    inference_model_name: str
     prompt: str
     max_length: int = 60
     num_return_sequences: int = 1
 
 class GapsTaskRequest(BaseModel):
-    model_name: str
+    inference_model_name: str
     word: str
 
 def parse_s3_url(url: str) -> tuple:
@@ -65,7 +58,7 @@ async def generate_gaps(request: GapsTaskRequest):
     """
     try:
         model_loader = ModelS3Loader(bucket_name=os.getenv('S3_BUCKET'), local_base_dir="./models")
-        model_path = model_loader.load(model_name=request.model_name)
+        model_path = model_loader.load(model_name=request.inference_model_name)
         print(f"[ModelS3Loader] Model loaded: {model_path}")
     except Exception as e:
         logger.error(f"Error during model loading: {str(e)}")
@@ -113,7 +106,8 @@ async def generate_gaps(request: GapsTaskRequest):
             "status": "success",
             "sentence_with_gap": sentence_with_gap,
             "options": options,
-            "answer": answer_word
+            "answer": answer_word,
+            "generated_sentences": generated_sentences
         }
 
     except Exception as e:
@@ -133,7 +127,7 @@ async def generate_text(request: GenerationRequest):
 
     try:
         model_loader = ModelS3Loader(bucket_name=os.getenv('S3_BUCKET'), local_base_dir="./models")
-        model_path = model_loader.load(model_name=request.model_name)
+        model_path = model_loader.load(model_name=request.inference_model_name)
         print(f"[ModelS3Loader] Model loaded: {model_path}")
     except Exception as e:
         logger.error(f"Error during model loading: {str(e)}")

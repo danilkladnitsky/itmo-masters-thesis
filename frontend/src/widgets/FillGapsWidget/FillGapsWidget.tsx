@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-import {Button, Text} from '@gravity-ui/uikit';
-import {useState} from 'react';
+import { Button, Text } from '@gravity-ui/uikit';
 
 interface FillGapsWidgetProps {
     sentence: string;
@@ -10,6 +9,7 @@ interface FillGapsWidgetProps {
     modelName: string;
     answer: string;
     setAnswer: (text: string) => void;
+    isError: boolean;
 }
 
 const Container = styled.div`
@@ -59,7 +59,7 @@ const SubmitButton = styled(Button)`
 `;
 
 
-export const FillGapsWidget = ({sentence, options, onSubmit, isLoading, modelName, answer, setAnswer}: FillGapsWidgetProps) => {
+export const FillGapsWidget = ({ sentence, options, onSubmit, isLoading, modelName, answer, setAnswer, isError }: FillGapsWidgetProps) => {
     const handleOptionClick = (option: string) => {
         setAnswer(option);
     };
@@ -103,11 +103,11 @@ export const FillGapsWidget = ({sentence, options, onSubmit, isLoading, modelNam
                 width="max"
                 disabled={!answer || isLoading}
                 size="xl"
-                view="action"
+                view='action'
                 onClick={handleSubmit}
                 isLoading={isLoading}
             >
-                Дальше
+                {isError ? 'Попробовать снова' : 'Дальше'}
             </SubmitButton>
         </Container>
     );
