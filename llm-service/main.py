@@ -4,6 +4,10 @@ import os
 import logging
 from llm.inference import ChineseSentenceGenerator
 from s3.loader import ModelS3Loader
+from dotenv import load_dotenv
+
+load_dotenv()
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -51,7 +55,7 @@ async def generate_text(request: GenerationRequest):
     model_path = None
 
     try:
-        model_loader = ModelS3Loader(bucket_name=os.getenv('S3_BUCKET'), local_base_dir="../models")
+        model_loader = ModelS3Loader(bucket_name=os.getenv('S3_BUCKET'), local_base_dir="./models")
         model_path = model_loader.load(model_name=request.model_name)
         print(f"[ModelS3Loader] Model loaded: {model_path}")
     except Exception as e:
@@ -61,7 +65,7 @@ async def generate_text(request: GenerationRequest):
     try:
         # Initialize generator
         generator = ChineseSentenceGenerator(
-            model_path=model_path,
+            model_path=str(model_path),
             device=os.getenv('DEVICE', None)
         )
         

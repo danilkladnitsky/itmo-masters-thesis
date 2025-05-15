@@ -24,8 +24,16 @@ class ModelS3Loader:
         """
         local_model_dir = self.local_base_dir / model_name
 
+        # also check if the model is already downloaded
+        # and has safetensors file
         if local_model_dir.exists():
-            print(f"[ModelS3Loader] Found model locally: {local_model_dir}")
+            if (local_model_dir / "model.safetensors").exists():
+                print(f"[ModelS3Loader] Found model locally: {local_model_dir}")
+                return local_model_dir
+            else:
+                print(f"[ModelS3Loader] Model found locally but no safetensors file. Downloading from S3...")
+                print(f"[ModelS3Loader] Downloading: {local_model_dir}")
+                self._download_model_from_s3(model_name, local_model_dir)
         else:
             print(f"[ModelS3Loader] Model not found locally. Downloading from S3...")
             self._download_model_from_s3(model_name, local_model_dir)
@@ -41,13 +49,17 @@ class ModelS3Loader:
         prefix = f"models/{model_name}/"
         target_dir.mkdir(parents=True, exist_ok=True)
 
+        print(f"[ModelS3Loader] Downloading model from S3: {prefix}")
         try:
             paginator = self.s3_client.get_paginator("list_objects_v2")
             for page in paginator.paginate(Bucket=self.bucket_name, Prefix=prefix):
+                print(f"[ModelS3Loader] Page: {page}")
                 for obj in page.get("Contents", []):
                     s3_key = obj["Key"]
                     rel_path = s3_key[len(prefix):]  # strip prefix
                     local_path = target_dir / rel_path
+
+                    print(f"[ModelS3Loader] Downloading: {s3_key} -> {local_path}")
 
                     # Create subfolders if needed
                     local_path.parent.mkdir(parents=True, exist_ok=True)
