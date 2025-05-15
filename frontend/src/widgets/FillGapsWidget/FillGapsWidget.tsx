@@ -1,4 +1,3 @@
-import {Progress} from '../../components/Progress/Progress';
 import styled from '@emotion/styled';
 import {Button, Text} from '@gravity-ui/uikit';
 import {useState} from 'react';
@@ -8,6 +7,9 @@ interface FillGapsWidgetProps {
     options: string[];
     onSubmit: (text: string) => void;
     isLoading: boolean;
+    modelName: string;
+    answer: string;
+    setAnswer: (text: string) => void;
 }
 
 const Container = styled.div`
@@ -56,25 +58,15 @@ const SubmitButton = styled(Button)`
     width: 100%;
 `;
 
-const ProgressContainer = styled.div`
-    width: 100%;
-    flex: 1 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 4px;
-`;
 
-export const FillGapsWidget = ({sentence, options, onSubmit, isLoading}: FillGapsWidgetProps) => {
-    const [selectedOption, setSelectedOption] = useState<string | null>(null);
-
+export const FillGapsWidget = ({sentence, options, onSubmit, isLoading, modelName, answer, setAnswer}: FillGapsWidgetProps) => {
     const handleOptionClick = (option: string) => {
-        setSelectedOption(option);
+        setAnswer(option);
     };
 
     const handleSubmit = () => {
-        if (selectedOption) {
-            onSubmit(selectedOption);
+        if (answer) {
+            onSubmit(answer);
         }
     };
 
@@ -82,16 +74,13 @@ export const FillGapsWidget = ({sentence, options, onSubmit, isLoading}: FillGap
 
     return (
         <Container>
-            <ProgressContainer>
-                <Text variant="body-1">model: bert_hsk3</Text>
-                <Progress />
-            </ProgressContainer>
+            <Text variant="caption-2">model: {modelName}</Text>
             <Text variant="body-3">Вставьте пропуск в предложении:</Text>
             <SentenceContainer>
                 {parts.map((part, index) => (
                     <span key={index}>
                         {part}
-                        {index < parts.length - 1 && <Gap>{selectedOption}</Gap>}
+                        {index < parts.length - 1 && <Gap>{answer || ''}</Gap>}
                     </span>
                 ))}
             </SentenceContainer>
@@ -99,7 +88,7 @@ export const FillGapsWidget = ({sentence, options, onSubmit, isLoading}: FillGap
                 {options.map((option) => (
                     <OptionButton
                         key={option}
-                        isSelected={selectedOption === option}
+                        isSelected={answer === option}
                         onClick={() => handleOptionClick(option)}
                         size="xl"
                         view="outlined"
@@ -112,7 +101,7 @@ export const FillGapsWidget = ({sentence, options, onSubmit, isLoading}: FillGap
             </OptionsContainer>
             <SubmitButton
                 width="max"
-                disabled={!selectedOption || isLoading}
+                disabled={!answer || isLoading}
                 size="xl"
                 view="action"
                 onClick={handleSubmit}

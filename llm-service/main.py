@@ -6,6 +6,9 @@ from llm.inference import ChineseSentenceGenerator
 from s3.loader import ModelS3Loader
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
+import random
+import re
+
 load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
@@ -57,13 +60,9 @@ async def health_check():
 @app.post("/generate-gaps")
 async def generate_gaps(request: GapsTaskRequest):
     """
-    Endpoint to generate gaps in a Chinese sentence.
-    
-    Args:
-        request: GenerationRequest containing the model name, prompt, and generation parameters
+    Generate one Chinese sentence with a gap. If the target word is found in generated sentences,
+    replace it. Otherwise, choose a random word from the sentence.
     """
-
-    model_path = None
     try:
         model_loader = ModelS3Loader(bucket_name=os.getenv('S3_BUCKET'), local_base_dir="./models")
         model_path = model_loader.load(model_name=request.model_name)
@@ -71,28 +70,54 @@ async def generate_gaps(request: GapsTaskRequest):
     except Exception as e:
         logger.error(f"Error during model loading: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
-    
+
     try:
         generator = ChineseSentenceGenerator(
             model_path=str(model_path),
             device=os.getenv('DEVICE', None)
         )
 
-        prompt = f"请用词语“{request.word}”造句："
-        print(f"[GapsTask] Prompt: {prompt}")
         generated_sentences = generator.generate(
-            prompt=prompt,
+            word=request.word,
             max_length=100,
             num_return_sequences=5
         )
-        
+
+        chosen_sentence = None
+        answer_word = None
+
+        # Try to find a sentence that contains the request.word
+        for sentence in generated_sentences:
+            if request.word in sentence:
+                chosen_sentence = sentence
+                answer_word = request.word
+                break
+
+        if not chosen_sentence:
+            # Use the first sentence and choose a random word from it
+            chosen_sentence = generated_sentences[0]
+            words = re.findall(r'\b[\u4e00-\u9fff]{1,3}\b', chosen_sentence)
+            if not words:
+                raise HTTPException(status_code=500, detail="No suitable word found in generated sentence.")
+            answer_word = random.choice(words)
+
+        sentence_with_gap = chosen_sentence.replace(answer_word, "_", 1)
+
+        # Generate distractors
+        distractors_pool = ["水", "牛奶", "果汁", "咖啡", "啤酒", "饮料", "汤", "饭", "书", "电脑"]
+        distractors = random.sample([w for w in distractors_pool if w != answer_word], 3)
+        options = distractors + [answer_word]
+        random.shuffle(options)
+
         return {
             "status": "success",
-            "generated_sentences": generated_sentences
+            "sentence_with_gap": sentence_with_gap,
+            "options": options,
+            "answer": answer_word
         }
-    
+
     except Exception as e:
-        logger.error(f"Error during gaps task generation: {str(e)}")
+        logger.error(f"Error during gap generation: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/generate")
