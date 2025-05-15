@@ -12,7 +12,7 @@ export const createYoutubeCaptionsController = ({youtubeCaptionsModule, s3Module
 
                 const fileName = `${videoId}.txt`
 
-                const fileUrl = await s3Module.uploadTextFile(fileName, captions)
+                const fileUrl = await s3Module.uploadTextFile("youtube-captions/" + fileName, captions)
 
                 return new Response(fileUrl, { status: 200 })
             } catch (error) {
