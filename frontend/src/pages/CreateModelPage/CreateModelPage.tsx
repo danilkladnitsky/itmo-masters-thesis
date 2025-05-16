@@ -1,5 +1,5 @@
-import {Text} from '@gravity-ui/uikit';
-import {CreateModelWidget} from '../../widgets/CreateModelWidget/CreateModelWidget';
+import { Text } from '@gravity-ui/uikit';
+import { CreateModelWidget } from '../../widgets/CreateModelWidget/CreateModelWidget';
 import styled from '@emotion/styled';
 
 const Container = styled.div`
@@ -11,7 +11,7 @@ const Container = styled.div`
 export const CreateModelPage = () => {
     return (
         <Container>
-            <Text variant="header-2">Создание модели</Text>
+            <Text variant="header-2">Сбор датасета</Text>
             <CreateModelWidget />
         </Container>
     );

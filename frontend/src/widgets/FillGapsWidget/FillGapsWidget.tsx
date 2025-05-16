@@ -92,8 +92,7 @@ export const FillGapsWidget = ({ sentence, options, onSubmit, isLoading, modelNa
                         onClick={() => handleOptionClick(option)}
                         size="xl"
                         view="outlined"
-                        isLoading={isLoading}
-                        disabled={isLoading}
+                        loading={isLoading}
                     >
                         <span>{option}</span>
                     </OptionButton>
@@ -101,11 +100,11 @@ export const FillGapsWidget = ({ sentence, options, onSubmit, isLoading, modelNa
             </OptionsContainer>
             <SubmitButton
                 width="max"
-                disabled={!answer || isLoading}
+                disabled={!answer}
                 size="xl"
                 view='action'
                 onClick={handleSubmit}
-                isLoading={isLoading}
+                loading={isLoading}
             >
                 {isError ? 'Попробовать снова' : 'Дальше'}
             </SubmitButton>

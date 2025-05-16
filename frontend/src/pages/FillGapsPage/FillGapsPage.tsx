@@ -11,7 +11,8 @@ const HSK_1_WORDS = [
 ];
 
 export const FillGapsPage = () => {
-  const { mutateAsync: generateGapsTask, isPending } = useGenerateGapsTask();
+  const [isLoading, setIsLoading] = useState(false);
+  const { mutateAsync: generateGapsTask } = useGenerateGapsTask();
 
   const [sentence, setSentence] = useState('');
   const [options, setOptions] = useState<string[]>([]);
@@ -20,7 +21,8 @@ export const FillGapsPage = () => {
   const [rightAnswer, setRightAnswer] = useState<string>('');
   const [isError, setIsError] = useState(false);
 
-  const generateTask = useCallback(async (word: string) => {
+  const generateTask = async (word: string) => {
+    setIsLoading(true);
     const response = await generateGapsTask({
       inference_model_name: modelName,
       word: word,
@@ -31,7 +33,8 @@ export const FillGapsPage = () => {
     setRightAnswer(response.answer);
     setIsError(false);
     setAnswer('');
-  }, [modelName]);
+    setIsLoading(false);
+  }
 
   const handleSubmit = async (word: string) => {
     if (word !== rightAnswer) {
@@ -44,14 +47,15 @@ export const FillGapsPage = () => {
   };
 
   const handleStart = () => {
+    setIsLoading(true);
     const nextRandomWord = HSK_1_WORDS[Math.floor(Math.random() * HSK_1_WORDS.length)];
     generateTask(nextRandomWord)
   }
 
   if (!rightAnswer) {
     return <div>
-      <Button isLoading={isPending} size='xl' view='action' onClick={handleStart}>
-        Let's goooo
+      <Button loading={isLoading} size='xl' view='action' onClick={handleStart}>
+        Начать (开始)
       </Button>
     </div>
   }
@@ -62,7 +66,7 @@ export const FillGapsPage = () => {
       answer={answer}
       setAnswer={setAnswer}
       modelName={modelName}
-      isLoading={isPending}
+      isLoading={isLoading}
       sentence={sentence}
       options={options}
       onSubmit={handleSubmit}

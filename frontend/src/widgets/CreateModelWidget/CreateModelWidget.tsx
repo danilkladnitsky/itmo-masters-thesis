@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
-import {Tab, TabList, TabPanel, TabProvider} from '@gravity-ui/uikit';
-import {useState} from 'react';
-import {YoutubeVideo, YoutubeVideoList} from './sub/YoutubeVideoList/YoutubeVideoList';
-import {ImageFile, ImagesList} from './sub/ImagesList/ImagesList';
-import {Prompt, PromptList} from './sub/PromptList/PromptList';
-import {ModelInfoForm} from './sub/ModelInfoForm/ModelInfoForm';
+import { Tab, TabList, TabPanel, TabProvider } from '@gravity-ui/uikit';
+import { useState } from 'react';
+import { YoutubeVideo, YoutubeVideoList } from './sub/YoutubeVideoList/YoutubeVideoList';
+import { ImageFile, ImagesList } from './sub/ImagesList/ImagesList';
+import { Prompt, PromptList } from './sub/PromptList/PromptList';
+import { ModelInfoForm } from './sub/ModelInfoForm/ModelInfoForm';
 
 const SettingsContainer = styled.div`
     display: flex;
@@ -26,7 +26,7 @@ export interface ModelData {
 }
 
 export const CreateModelWidget = () => {
-    const [activeTab, setActiveTab] = useState('info');
+    const [activeTab, setActiveTab] = useState('prompts');
     const [modelData, setModelData] = useState<ModelData>({
         images: [],
         videos: [],
@@ -38,15 +38,15 @@ export const CreateModelWidget = () => {
     const [isLoading] = useState(false);
 
     const handleAddImages = (payload: ImageFile[]) => {
-        setModelData({...modelData, images: payload});
+        setModelData({ ...modelData, images: payload });
     };
 
     const onVideoChange = (payload: YoutubeVideo[]) => {
-        setModelData({...modelData, videos: payload});
+        setModelData({ ...modelData, videos: payload });
     };
 
     const handleAddPrompts = (payload: Prompt[]) => {
-        setModelData({...modelData, prompts: payload});
+        setModelData({ ...modelData, prompts: payload });
     };
 
     const onFormChange = (data: Pick<ModelData, 'name' | 'description' | 'hskLevel'>) => {
@@ -68,7 +68,7 @@ export const CreateModelWidget = () => {
         <SettingsContainer>
             <TabProvider value={activeTab} onUpdate={setActiveTab}>
                 <TabList>
-                    <Tab value="info">Информация о модели</Tab>
+                    <Tab value="info" disabled>Информация о модели</Tab>
                     <Tab value="youtube">YouTube</Tab>
                     <Tab value="images">Изображения</Tab>
                     <Tab value="prompts">Промты</Tab>

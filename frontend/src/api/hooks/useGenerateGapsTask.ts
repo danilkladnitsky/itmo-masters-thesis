@@ -14,7 +14,7 @@ type Response = {
 }
 
 export const useGenerateGapsTask = () => {
-    return useMutation<Response, Error, Request>({
+    const hookResult = useMutation<Response, Error, Request>({
         mutationFn: async (request: Request) => {
             const response = await fetch(API_URL + '/generate-gaps', {
                 method: 'POST',
@@ -27,4 +27,6 @@ export const useGenerateGapsTask = () => {
             return response.json();
         },
     });
+
+    return hookResult
 };

@@ -12,7 +12,7 @@ const HeaderStyled = styled.div`
 export const Header = () => {
     return (
         <HeaderStyled>
-            <Text variant="header-1">Artem Baytit Menya</Text>
+            <Text variant="header-1"></Text>
         </HeaderStyled>
     );
 };
