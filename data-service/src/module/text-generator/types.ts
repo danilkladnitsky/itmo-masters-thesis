@@ -6,6 +6,7 @@ export type TextGenerateInput = {
     subject?: string;
     extraInstructions?: string;
     options?: Partial<LLMOptions>;
+    iterations?: number;
 }
 
 export interface ITextGeneratorModule {
