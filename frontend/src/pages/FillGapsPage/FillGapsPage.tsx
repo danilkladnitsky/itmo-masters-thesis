@@ -1,6 +1,6 @@
 import { FillGapsWidget } from '../../widgets/FillGapsWidget/FillGapsWidget';
 import { useGenerateGapsTask } from '../../api/hooks/useGenerateGapsTask';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { Button } from '@gravity-ui/uikit';
 
 const HSK_1_WORDS = [
