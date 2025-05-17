@@ -54,6 +54,7 @@ export const StartPage = () => {
                     </Button>
                     <Button
                         size="xl"
+                        disabled
                         onClick={() => handleTaskSelect('test')}
                     >
                         Test Generator
