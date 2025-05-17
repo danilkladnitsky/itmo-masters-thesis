@@ -106,7 +106,7 @@ export const FillGapsWidget = ({ sentence, options, onSubmit, isLoading, modelNa
                 onClick={handleSubmit}
                 loading={isLoading}
             >
-                {isError ? 'Попробовать снова' : 'Дальше'}
+                {isError ? 'Неверно! Попробовать снова' : 'Дальше'}
             </SubmitButton>
         </Container>
     );
