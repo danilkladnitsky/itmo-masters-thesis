@@ -1,1 +1,1 @@
-export const API_URL = process.env.NODE_ENV === 'production' ? 'https://llm-service.master-thesis.kladnitsky.ru' : 'http://localhost:8000';
+export const API_URL = process.env.NODE_ENV === 'production' ? 'https://api.daimao.ru' : 'http://localhost:8000';
