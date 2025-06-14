@@ -7,10 +7,13 @@
 .sentenceWrapper {
     display: flex;
     gap: 8px;
+    color: #0073e6;
 }
 
-.sentence {
-    color: $primary-color;
-    font-size: 44px;
-    letter-spacing: -0.1em;
+.correct {
+    color: #22c55e;
+}
+
+.incorrect {
+    color: #ef4444;
 }

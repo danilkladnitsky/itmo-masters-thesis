@@ -1,11 +1,17 @@
 import { Box, Button } from '@mantine/core'
-import { IconChevronRight } from '@tabler/icons-react';
+import { IconChevronLeft } from '@tabler/icons-react';
 import { motion } from 'motion/react'
 import styles from './task-step-control.module.scss'
 
 const DELAY = 2
 
-export const TaskStepControl = () => {
+interface TaskStepControlProps {
+    onBack: () => void
+    onNext: () => void
+    disabled?: boolean
+}
+
+export const TaskStepControl = ({ onBack, onNext, disabled = false }: TaskStepControlProps) => {
     return (
         <Box className={styles.wrapper}>
             <motion.div
@@ -13,7 +19,7 @@ export const TaskStepControl = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: DELAY }}
             >
-                <Button className={styles.backButton} variant='transparent' color='gray' size='md'>
+                <Button className={styles.backButton} leftSection={<IconChevronLeft size={20} />} variant='subtle' color='gray' size='md' onClick={onBack}>
                     Назад
                 </Button>
             </motion.div>
@@ -22,9 +28,17 @@ export const TaskStepControl = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: DELAY }}
             >
-                <Button rightSection={<IconChevronRight size={20} />} size='md' className={styles.nextButton}>
-                    Дальше
-                </Button>
+                {
+                    disabled ? (
+                        <Button size='md' variant='filled' color='gray' disabled>
+                            Проверить
+                        </Button>
+                    ) : (
+                        <Button size='md' variant='gradient' gradient={{ from: 'yellow', to: 'green', deg: 51 }} className={styles.nextButton} onClick={onNext}>
+                            Проверить
+                        </Button>
+                    )
+                }
             </motion.div>
         </Box>
     )

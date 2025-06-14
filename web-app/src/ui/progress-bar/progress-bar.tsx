@@ -8,19 +8,20 @@ interface ProgressBarProps {
     currentStep: number
     totalSteps: number
     onClose: () => void
+    isLoading?: boolean
 }
 
-export const ProgressBar = ({ value = 50, currentStep = 7, totalSteps = 10, onClose }: ProgressBarProps) => {
+export const ProgressBar = ({ value = 50, currentStep = 7, totalSteps = 10, onClose, isLoading = false }: ProgressBarProps) => {
     return (
         <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.5 }}
         >
             <Box className={styles.wrapper}>
                 <CloseButton size='lg' onClick={onClose} />
                 <Box className={styles.progressWrapper}>
-                    <Progress size="sm" value={value} color='orange' />
+                    <Progress size="sm" value={value} color='yellow' animated={isLoading} />
                 </Box>
                 <Box className={styles.stepsWrapper}>
                     <Text fw={600} className={styles.currentStep}>{currentStep}</Text>

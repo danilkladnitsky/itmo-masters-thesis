@@ -10,3 +10,26 @@
     align-items: center;
     gap: 16px;
 }
+
+.pageWrapper {
+    position: relative;
+}
+
+.notification {
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0 24px;
+}
+
+.notificationContent {
+    position: relative;
+}
+
+.notificationButton {
+    position: absolute;
+    right: 16px;
+    bottom: 12px;
+}
