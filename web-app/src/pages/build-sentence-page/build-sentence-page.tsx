@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { IconCheck, IconChevronRight } from '@tabler/icons-react';
 import styles from './build-sentence-page.module.scss'
 
+import { useNavigate } from 'react-router'
 
 // 我现在要吃饭
 const CORRECT_WORD = '爸爸'
@@ -34,6 +35,7 @@ export const BuildSentencePage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [solveStatus, setSolveStatus] = useState<'correct' | 'incorrect' | 'pending'>('pending');
     const [selectedWord, setSelectedWord] = useState<string | null>(null);
+    const navigate = useNavigate()
 
     useEffect(() => {
         setTimeout(() => {
@@ -42,13 +44,32 @@ export const BuildSentencePage = () => {
     }, []);
 
     const onBack = () => {
-        setCurrentStep(currentStep - 1);
+        const prevStep = currentStep - 1;
+        if (prevStep < 1) {
+            navigate('/')
+            return
+        }
+
+        setCurrentStep(prevStep);
+        setSelectedWord(null);
+        setSolveStatus('pending');
     }
 
     const onNext = () => {
+        const nextStep = currentStep + 1;
+
+        if (nextStep > 10) {
+            navigate('/')
+            return
+        }
+
         setSelectedWord(null);
         setSolveStatus('pending');
         setCurrentStep(currentStep + 1);
+    }
+
+    const onCancel = () => {
+        navigate('/')
     }
 
     const sentence = useMemo(() => {
@@ -77,6 +98,7 @@ export const BuildSentencePage = () => {
     return (
         <PageWrapper className={styles.pageWrapper}>
             <BuildSentenceWidget
+                onClose={onCancel}
                 solveStatus={solveStatus}
                 isLoading={isLoading}
                 sentence={sentence}
@@ -87,6 +109,7 @@ export const BuildSentencePage = () => {
                 onSelect={onSelect}
                 onBack={onBack}
                 onWordSubmit={onWordSubmit}
+
             />
             {solveStatus === 'correct' && <Box className={styles.notification}>
                 <Notification className={styles.notificationContent} withBorder icon={<IconCheck size={20} />} title="Ого..." color="green" withCloseButton={false} >

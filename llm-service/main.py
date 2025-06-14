@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 import random
 import re
+from service.gap_task import GapTaskService
 
 load_dotenv()
 
@@ -33,6 +34,10 @@ class GenerationRequest(BaseModel):
 class GapsTaskRequest(BaseModel):
     inference_model_name: str
     word: str
+    hsk_level: int
+
+class TaskGapRequest(BaseModel):
+    inference_model_name: str
 
 def parse_s3_url(url: str) -> tuple:
     """Parse S3 URL to get bucket and prefix."""
@@ -155,6 +160,16 @@ async def generate_text(request: GenerationRequest):
     except Exception as e:
         logger.error(f"Error during text generation: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/generate-gap-task")
+async def generate_gap_task(request: TaskGapRequest):
+    try:
+        gap_task_service = GapTaskService(model_name=request.inference_model_name)
+        return gap_task_service.generate_gap_task(model_name=request.inference_model_name, hsk_level=request.hsk_level)
+    except Exception as e:
+        logger.error(f"Error during gap task generation: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 if __name__ == "__main__":
     import uvicorn

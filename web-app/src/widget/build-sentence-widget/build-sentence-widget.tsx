@@ -21,13 +21,14 @@ interface BuildSentenceWidgetProps {
     onSelect: (word: string) => void
     onBack: () => void
     onWordSubmit: () => void
+    onClose: () => void
 }
 
-export const BuildSentenceWidget = ({ isLoading, solveStatus = 'pending', sentence, options, selectedWord, currentStep, totalSteps, onSelect, onBack, onWordSubmit }: BuildSentenceWidgetProps) => {
+export const BuildSentenceWidget = ({ isLoading, solveStatus = 'pending', sentence, options, selectedWord, currentStep, totalSteps, onSelect, onBack, onWordSubmit, onClose }: BuildSentenceWidgetProps) => {
     if (isLoading) {
         return <Box className={styles.wrapper}>
             <Stack h='100%' gap={48}>
-                <ProgressBar isLoading={isLoading} value={currentStep / totalSteps * 100} currentStep={currentStep} totalSteps={totalSteps} onClose={() => { }} />
+                <ProgressBar isLoading={isLoading} value={currentStep / totalSteps * 100} currentStep={currentStep} totalSteps={totalSteps} onClose={onClose} />
                 <Skeleton height={100} />
                 <SimpleGrid cols={2} spacing={8}>
                     {Array.from({ length: 4 }).map((_, index) => (
@@ -42,7 +43,7 @@ export const BuildSentenceWidget = ({ isLoading, solveStatus = 'pending', senten
     return (
         <Box className={styles.wrapper}>
             <Stack justify='space-between' h='100%'>
-                <ProgressBar value={currentStep / totalSteps * 100} currentStep={currentStep} totalSteps={totalSteps} onClose={() => { }} />
+                <ProgressBar value={currentStep / totalSteps * 100} currentStep={currentStep} totalSteps={totalSteps} onClose={onBack} />
                 <Box className={styles.taskWrapper}>
                     <motion.div
                         initial={{ opacity: 0 }}
