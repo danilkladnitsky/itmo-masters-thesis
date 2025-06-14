@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import random
 import re
 from service.gap_task import GapTaskService
+from service.word_bundle import WordBundleService
 
 load_dotenv()
 
@@ -32,12 +33,10 @@ class GenerationRequest(BaseModel):
     num_return_sequences: int = 1
 
 class GapsTaskRequest(BaseModel):
-    inference_model_name: str
-    word: str
-    hsk_level: int
+    bundles_ids: list[int]
 
 class TaskGapRequest(BaseModel):
-    inference_model_name: str
+    bundles_ids: list[int]
 
 def parse_s3_url(url: str) -> tuple:
     """Parse S3 URL to get bucket and prefix."""
@@ -164,12 +163,20 @@ async def generate_text(request: GenerationRequest):
 @app.post("/generate-gap-task")
 async def generate_gap_task(request: TaskGapRequest):
     try:
-        gap_task_service = GapTaskService(model_name=request.inference_model_name)
-        return gap_task_service.generate_gap_task(model_name=request.inference_model_name, hsk_level=request.hsk_level)
+        gap_task_service = GapTaskService()
+        return gap_task_service.generate_gap_task(bundles_ids=request.bundles_ids)
     except Exception as e:
         logger.error(f"Error during gap task generation: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/word-bundles")
+async def get_word_bundles():
+    try:
+        word_bundles = WordBundleService().get_word_bundles()
+        return word_bundles
+    except Exception as e:
+        logger.error(f"Error during word bundle retrieval: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
     import uvicorn

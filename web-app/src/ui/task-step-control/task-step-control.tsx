@@ -3,7 +3,6 @@ import { IconChevronLeft } from '@tabler/icons-react';
 import { motion } from 'motion/react'
 import styles from './task-step-control.module.scss'
 
-const DELAY = 2
 
 interface TaskStepControlProps {
     onBack: () => void
@@ -17,7 +16,7 @@ export const TaskStepControl = ({ onBack, onNext, disabled = false }: TaskStepCo
             <motion.div
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: DELAY }}
+                transition={{ duration: 0.5 }}
             >
                 <Button className={styles.backButton} leftSection={<IconChevronLeft size={20} />} variant='subtle' color='gray' size='md' onClick={onBack}>
                     Назад
@@ -26,7 +25,7 @@ export const TaskStepControl = ({ onBack, onNext, disabled = false }: TaskStepCo
             <motion.div
                 initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: DELAY }}
+                transition={{ duration: 0.5 }}
             >
                 {
                     disabled ? (

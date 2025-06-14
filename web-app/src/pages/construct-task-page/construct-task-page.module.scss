@@ -11,4 +11,12 @@
 
 .wordGrid {
     flex: 1;
+    padding: 0 16px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }

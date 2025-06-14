@@ -7,35 +7,21 @@ import { IconCheck, IconChevronRight } from '@tabler/icons-react';
 import styles from './build-sentence-page.module.scss'
 
 import { useNavigate } from 'react-router'
-
-// 我现在要吃饭
-const CORRECT_WORD = '爸爸'
-const SENTENCE = ['我', APP_CONFIG.GAP_CHARACTER, '要', '吃饭', '。']
-const OPTIONS = [
-    {
-        word: '爸爸',
-        image: 'https://picsum.photos/200/300'
-    },
-    {
-        word: '妈妈',
-        image: 'https://picsum.photos/200/300'
-    },
-    {
-        word: '哥哥',
-        image: 'https://picsum.photos/200/300'
-    },
-    {
-        word: '妹妹',
-        image: 'https://picsum.photos/200/300'
-    },
-]
+import { useStore } from '@/store'
 
 export const BuildSentencePage = () => {
-    const [currentStep, setCurrentStep] = useState(1);
+    const { tasks } = useStore()
+
+    const [currentStep, setCurrentStep] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const [solveStatus, setSolveStatus] = useState<'correct' | 'incorrect' | 'pending'>('pending');
     const [selectedWord, setSelectedWord] = useState<string | null>(null);
     const navigate = useNavigate()
+
+    const currentTask = useMemo(() => {
+        return tasks[currentStep]
+    }, [tasks, currentStep])
+
 
     useEffect(() => {
         setTimeout(() => {
@@ -58,14 +44,14 @@ export const BuildSentencePage = () => {
     const onNext = () => {
         const nextStep = currentStep + 1;
 
-        if (nextStep > 10) {
+        if (nextStep >= tasks.length) {
             navigate('/')
             return
         }
 
         setSelectedWord(null);
         setSolveStatus('pending');
-        setCurrentStep(currentStep + 1);
+        setCurrentStep(nextStep);
     }
 
     const onCancel = () => {
@@ -73,13 +59,13 @@ export const BuildSentencePage = () => {
     }
 
     const sentence = useMemo(() => {
-        return SENTENCE.map((word,) => {
+        return currentTask.sentence.map((word,) => {
             if (word === APP_CONFIG.GAP_CHARACTER && selectedWord) {
                 return selectedWord;
             }
             return word;
         });
-    }, [selectedWord]);
+    }, [selectedWord, currentTask]);
 
     const onSelect = (word: string) => {
         if (solveStatus !== 'correct') {
@@ -88,7 +74,7 @@ export const BuildSentencePage = () => {
     }
 
     const onWordSubmit = () => {
-        if (selectedWord === CORRECT_WORD) {
+        if (selectedWord === currentTask.answer) {
             setSolveStatus('correct');
         } else {
             setSolveStatus('incorrect');
@@ -102,9 +88,11 @@ export const BuildSentencePage = () => {
                 solveStatus={solveStatus}
                 isLoading={isLoading}
                 sentence={sentence}
-                options={OPTIONS}
+                options={currentTask.options.filter((option) => option.trim()).map((option) => ({
+                    word: option,
+                }))}
                 currentStep={currentStep}
-                totalSteps={10}
+                totalSteps={tasks.length}
                 selectedWord={selectedWord}
                 onSelect={onSelect}
                 onBack={onBack}

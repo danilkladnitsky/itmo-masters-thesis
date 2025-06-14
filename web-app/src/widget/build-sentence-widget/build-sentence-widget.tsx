@@ -13,7 +13,6 @@ interface BuildSentenceWidgetProps {
     sentence: string[]
     options: {
         word: string
-        image: string
     }[]
     selectedWord: string | null
     currentStep: number
@@ -44,7 +43,7 @@ export const BuildSentenceWidget = ({ isLoading, solveStatus = 'pending', senten
         <Box className={styles.wrapper}>
             <Stack justify='space-between' h='100%'>
                 <ProgressBar value={currentStep / totalSteps * 100} currentStep={currentStep} totalSteps={totalSteps} onClose={onBack} />
-                <Box className={styles.taskWrapper}>
+                <Box className={styles.taskWrapper} key={currentStep}>
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -63,12 +62,12 @@ export const BuildSentenceWidget = ({ isLoading, solveStatus = 'pending', senten
 
                                 return (
                                     <motion.div
-                                        key={option.word}
+                                        key={(option.word + index)}
                                         initial={{ opacity: 0, scale: 0.95 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         transition={{ duration: 0.6, delay: 3 + index * 0.4, ease: 'easeInOut' }}
                                     >
-                                        <WordCard selected={isSelected && canSelect} word={option.word} image={option.image} onClick={onSelect} />
+                                        <WordCard selected={isSelected && canSelect} word={option.word} onClick={onSelect} />
                                     </motion.div>
                                 )
                             })}

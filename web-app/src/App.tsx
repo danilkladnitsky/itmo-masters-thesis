@@ -5,7 +5,9 @@ import { BuildSentencePage } from './pages/build-sentence-page/build-sentence-pa
 import { ConstructTaskPage } from './pages/construct-task-page/construct-task-page';
 
 import { BrowserRouter, Routes, Route } from 'react-router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+const queryClient = new QueryClient()
 const theme = createTheme({
   primaryColor: 'blue',
 
@@ -22,12 +24,14 @@ const theme = createTheme({
 function App() {
   return (
     <MantineProvider theme={theme} defaultColorScheme='light'>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<ConstructTaskPage />} />
-          <Route path='/build-sentence' element={<BuildSentencePage />} />
-        </Routes>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<ConstructTaskPage />} />
+            <Route path='/build-sentence' element={<BuildSentencePage />} />
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
     </MantineProvider>
   )
 }

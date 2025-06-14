@@ -18,7 +18,7 @@ export const ChineseCharacter = ({ character, isGap = false, pinyin = 'wo', show
             {
                 isGap ? (
                     <Box className={styles.gapWrapper}>
-                        <Indicator size={12} position='middle-center' processing className={styles.gap}>
+                        <Indicator size={8} position='middle-center' processing className={styles.gap}>
                             <Box className={styles.gapCharacter} />
                         </Indicator>
                     </Box>
