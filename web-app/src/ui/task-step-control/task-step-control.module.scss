@@ -1,0 +1,21 @@
+@import '@/colors.scss';
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+
+    button {
+        height: 54px;
+    }
+
+    .backButton {
+        color: $muted-color;
+    }
+
+    .nextButton {
+        background-color: $primary-color;
+    }
+}
+

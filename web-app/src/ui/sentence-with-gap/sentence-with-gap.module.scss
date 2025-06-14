@@ -1,0 +1,16 @@
+@import '@/colors.scss';
+
+.wrapper {
+    font-family: "Ma Shan Zheng", cursive;
+}
+
+.sentenceWrapper {
+    display: flex;
+    gap: 8px;
+}
+
+.sentence {
+    color: $primary-color;
+    font-size: 44px;
+    letter-spacing: -0.1em;
+}

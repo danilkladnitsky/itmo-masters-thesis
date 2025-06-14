@@ -1,0 +1,27 @@
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.taskTitle {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.taskWrapper {
+    height: 100%;
+    padding: 32px 0px;
+}
+
+.sentenceWrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.taskTitle {
+    margin-bottom: 16px;
+}

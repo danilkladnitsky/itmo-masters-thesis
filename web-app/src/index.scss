@@ -1,0 +1,16 @@
+:root {
+    --color-primary: #0073e6;     /* Bright blue */
+    --color-background: #ffffff;  /* White */
+    --color-text: #000000;        /* Black */
+    --color-surface: #f2f2f2;     /* Light gray */
+    --color-muted: #707070;       /* Medium gray */
+    --color-accent: #ff0000;      /* Red */
+}
+
+@import './colors.scss';
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: "Open Sans", sans-serif;
+}
