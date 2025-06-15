@@ -6,6 +6,7 @@ import { ConstructTaskPage } from './pages/construct-task-page/construct-task-pa
 
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { AppProvider } from './context/app-context';
 
 const queryClient = new QueryClient()
 const theme = createTheme({
@@ -23,14 +24,17 @@ const theme = createTheme({
 
 function App() {
   return (
+
     <MantineProvider theme={theme} defaultColorScheme='light'>
       <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<ConstructTaskPage />} />
-            <Route path='/build-sentence' element={<BuildSentencePage />} />
-          </Routes>
-        </BrowserRouter>
+        <AppProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path='/' element={<ConstructTaskPage />} />
+              <Route path='/build-sentence' element={<BuildSentencePage />} />
+            </Routes>
+          </BrowserRouter>
+        </AppProvider>
       </QueryClientProvider>
     </MantineProvider>
   )
