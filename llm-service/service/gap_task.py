@@ -21,7 +21,6 @@ class GapTaskService:
         return words_list
 
     def generate_gap_task(self, bundles_ids: list[int]):
-        words_list = self.get_words_list(bundles_ids)
        # Take either MAX_WORDS_IN_TASK or all available words, whichever is smaller
   
 

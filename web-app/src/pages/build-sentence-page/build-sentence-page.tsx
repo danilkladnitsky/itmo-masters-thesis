@@ -18,6 +18,8 @@ export const BuildSentencePage = () => {
     const [selectedWord, setSelectedWord] = useState<string | null>(null);
     const navigate = useNavigate()
 
+    console.log(tasks)
+
     const currentTask = useMemo(() => {
         return tasks[currentStep]
     }, [tasks, currentStep])

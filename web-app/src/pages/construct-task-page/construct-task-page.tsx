@@ -6,18 +6,17 @@ import { Box, Button, SimpleGrid, Skeleton, Stack, Text } from "@mantine/core"
 import styles from './construct-task-page.module.scss'
 import { useEffect, useMemo, useState } from "react"
 import { useNavigate } from "react-router"
-import { useGenerateGapTask } from "@/api/useGenerateGapTask"
 import { useAppContext } from "@/context/app-context"
 
 export const ConstructTaskPage = () => {
-    const { generateWordBundles, wordBundles } = useAppContext()
-    const { mutateAsync: generateGapTask, isPending } = useGenerateGapTask()
+    const { generateWordBundles, generateGapTask, wordBundles } = useAppContext()
     const [selectedBundleIds, setSelectedBundleIds] = useState<number[]>([])
     const navigate = useNavigate()
 
     const [isLoading, setIsLoading] = useState(true)
 
     const handleGenerateWordBundles = async () => {
+        setIsLoading(true)
         await generateWordBundles()
         setIsLoading(false)
     }
@@ -82,7 +81,7 @@ export const ConstructTaskPage = () => {
                         }
                     </SimpleGrid>
                 </Box>
-                <Button disabled={isPending} loading={isPending} variant='filled' size='lg' color='green' fullWidth onClick={onNext}>
+                <Button disabled={isLoading} loading={isLoading} variant='filled' size='lg' color='green' fullWidth onClick={onNext}>
                     Далее
                 </Button>
             </Stack>

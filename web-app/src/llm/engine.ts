@@ -1,7 +1,8 @@
 import { CreateWebWorkerMLCEngine, type ChatCompletionMessageParam, type InitProgressCallback, type WebWorkerMLCEngine } from "@mlc-ai/web-llm";
 
 import { LLM_CONFIG } from "./config";
-import type { WordBundle } from "@/types";
+import type { Task, WordBundle } from "@/types";
+import { GAP_TASK_PROMPT } from "./prompts";
 
 interface CreateLLMEngine {
     model: string;
@@ -12,6 +13,7 @@ export interface LLMEngine {
     engine: WebWorkerMLCEngine;
   generateText(prompt: string): Promise<string>;
   generateWordBundles(prompt: string): Promise<WordBundle[]>;
+  generateGapTask(wordBundles: WordBundle[]): Promise<Task[]>;
 }
 
 export async function createLLMEngine({ model, initProgressCallback }: CreateLLMEngine): Promise<LLMEngine> {
@@ -45,6 +47,8 @@ export async function createLLMEngine({ model, initProgressCallback }: CreateLLM
 
     const text = response.choices[0].message.content;
 
+    console.info('text', response);
+
     if (!text) {
         throw new Error("No text returned from LLM");
     }
@@ -70,11 +74,20 @@ export async function createLLMEngine({ model, initProgressCallback }: CreateLLM
 
     const response = await generateText(prompt)
 
+
     const wordBundles = JSON.parse(response) as WordBundle[]
 
     return wordBundles
-    
-    
+  }
+
+  const generateGapTask = async (wordBundles: WordBundle[]) => {
+    const prompt = GAP_TASK_PROMPT(wordBundles)
+
+    const response = await generateText(prompt)
+
+    const gapTask = JSON.parse(response) as Task[]
+
+    return gapTask
   }
 
   
@@ -82,5 +95,6 @@ export async function createLLMEngine({ model, initProgressCallback }: CreateLLM
         engine,
       generateText,
       generateWordBundles,
+      generateGapTask,
     }
 }
