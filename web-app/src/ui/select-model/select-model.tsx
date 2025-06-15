@@ -33,7 +33,7 @@ export const SelectModel = ({ value, onSubmit }: SelectModelProps) => {
                     <Text size="lg" fw={500}>Выберите тип модели</Text>
                     <SegmentedControl
                         data={data}
-                        value={selectedValue}
+                        value={selectedValue ?? undefined}
                         onChange={(value) => setSelectedValue(value as "api" | "local")}
                         fullWidth
                     />
