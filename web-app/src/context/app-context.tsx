@@ -102,5 +102,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     if (llmProvider === "local" && progressReport.progress !== 1) {
         return <LLMEngineLoader progressReport={progressReport} />
     }
+
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
