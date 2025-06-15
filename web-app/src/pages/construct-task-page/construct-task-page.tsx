@@ -1,18 +1,26 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { PageWrapper } from "@/ui/page-wrapper/page-wrapper"
 import { WordCard } from "@/ui/word-card/word-card"
 import { Box, Button, SimpleGrid, Skeleton, Stack, Text } from "@mantine/core"
 
 import styles from './construct-task-page.module.scss'
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useNavigate } from "react-router"
-import { useWordBundles } from "@/api/useWordBundles"
 import { useGenerateGapTask } from "@/api/useGenerateGapTask"
+import { useAppContext } from "@/context/app-context"
 
 export const ConstructTaskPage = () => {
-    const { data: wordBundles, isLoading } = useWordBundles()
+    const { generateWordBundles, wordBundles } = useAppContext()
     const { mutateAsync: generateGapTask, isPending } = useGenerateGapTask()
     const [selectedBundleIds, setSelectedBundleIds] = useState<number[]>([])
     const navigate = useNavigate()
+
+    const [isLoading, setIsLoading] = useState(true)
+
+    const handleGenerateWordBundles = async () => {
+        await generateWordBundles()
+        setIsLoading(false)
+    }
 
     const handleWordClick = (id: number) => {
         setSelectedBundleIds((prev) => {
@@ -38,6 +46,10 @@ export const ConstructTaskPage = () => {
             id: bundle.id
         }))
     }, [wordBundles])
+
+    useEffect(() => {
+        handleGenerateWordBundles()
+    }, [])
 
     if (isLoading) {
         return <PageWrapper>

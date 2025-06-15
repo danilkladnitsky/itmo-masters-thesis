@@ -4,3 +4,9 @@ export type Task = {
     sentence: string[]
     answer: string
 }
+
+export type WordBundle = {
+    bundleName: string
+    words: string[]
+    id: number
+}
