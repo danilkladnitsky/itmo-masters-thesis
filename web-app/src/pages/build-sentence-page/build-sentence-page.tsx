@@ -100,10 +100,10 @@ export const BuildSentencePage = () => {
 
             />
             {solveStatus === 'correct' && <Box className={styles.notification}>
-                <Notification className={styles.notificationContent} withBorder icon={<IconCheck size={20} />} title="Ого..." color="green" withCloseButton={false} >
-                    <Group align='center' gap={12}>
-                        <Text>Вы выбрали правильное слово!</Text>
-                        <Button className={styles.notificationButton} rightSection={<IconChevronRight size={20} />} size='md' variant='gradient' gradient={{ from: 'yellow', to: 'green', deg: 51 }} onClick={onNext}>Дальше</Button>
+                <Notification className={styles.notificationContent} withBorder icon={<IconCheck size={20} />} color="green" withCloseButton={false} >
+                    <Group justify='space-between' align='center'>
+                        <Text>Правильно!</Text>
+                        <Button size='md' className={styles.notificationButton} rightSection={<IconChevronRight size={20} />} variant='gradient' gradient={{ from: 'yellow', to: 'green', deg: 51 }} onClick={onNext}>Дальше</Button>
                     </Group>
                 </Notification>
             </Box>}

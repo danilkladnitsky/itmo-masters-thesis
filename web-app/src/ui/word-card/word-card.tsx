@@ -13,7 +13,7 @@ interface WordCardProps {
     blur?: boolean
 }
 
-export const WordCard = ({ word, selected = false, onClick, subtitle, badge, blur = false }: WordCardProps) => {
+export const WordCard = ({ word, selected = false, onClick, subtitle, badge }: WordCardProps) => {
     return (
         <Box className={cn(styles.wrapper, selected ? styles.selected : undefined)} onClick={() => onClick?.(word)}>
             {/* {selected && <IconCircleCheckFilled color='#00FF00' className={styles.star} size={24} />} */}

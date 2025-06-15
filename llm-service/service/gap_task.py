@@ -7,7 +7,6 @@ PATH_TO_MOCK_RESPONSES = "data/mock_responses.json"
 MAX_WORDS_IN_TASK = 10
 
 class GapTaskService:
-
     def __init__(self):
         self.word_bundles = self.get_word_bundles()\
 
@@ -23,10 +22,8 @@ class GapTaskService:
 
     def generate_gap_task(self, bundles_ids: list[int]):
         words_list = self.get_words_list(bundles_ids)
-        # Take either MAX_WORDS_IN_TASK or all available words, whichever is smaller
-        num_words = min(len(words_list), MAX_WORDS_IN_TASK)
-        words_list = random.sample(words_list, num_words)
-        print(words_list)
+       # Take either MAX_WORDS_IN_TASK or all available words, whichever is smaller
+  
 
         # 2. generate a sentence with the word
         # 3. tokenize the sentence and divide into words
