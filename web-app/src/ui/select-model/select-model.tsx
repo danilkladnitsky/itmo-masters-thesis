@@ -25,7 +25,6 @@ export const SelectModel = ({ value, onSubmit }: SelectModelProps) => {
         }];
     }, []);
 
-
     return (
         <Box className={styles.wrapper}>
             <Box className={styles.content}>
