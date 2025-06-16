@@ -1,0 +1,50 @@
+Model: gpt-4.1-mini
+Word: 你, Sentence: 你喜欢吃苹果吗？, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 我, Sentence: 我喜欢吃苹果。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 是, Sentence: 他是老师。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 在, Sentence: 我在学校学习汉语。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 的, Sentence: 这是我的书。, Word usage: 1.0, HSK coverage: 1.0
+Model: deepseek-r1:1.5b
+Word: 你, Sentence: “你（你可以说）你的作业写得怎么样？, Word usage: 1.0, HSK coverage: 0.5769230769230769
+Model: deepseek-r1:1.5b
+Word: 我, Sentence: 今天很忙，我没有时间做作业。, Word usage: 1.0, HSK coverage: 0.7037037037037037
+Model: deepseek-r1:1.5b
+Word: 是, Sentence: 在是在的条件下是正确的。, Word usage: 1.0, HSK coverage: 0.8
+Model: deepseek-r1:1.5b
+Word: 在, Sentence: 我在外边。, Word usage: 1.0, HSK coverage: 0.75
+Model: deepseek-r1:1.5b
+Word: 的, Sentence: 我看到了一只花。（用词：我，看到，一只，花）, Word usage: 0.0, HSK coverage: 0.5882352941176471
+Model: qwen3:1.7b
+Word: 你, Sentence: 你吃早饭了。, Word usage: 1.0, HSK coverage: 0.8
+Model: qwen3:1.7b
+Word: 我, Sentence: 我今天吃了午饭。, Word usage: 1.0, HSK coverage: 0.8333333333333334
+Model: qwen3:1.7b
+Word: 是, Sentence: 苹果是红色的。, Word usage: 1.0, HSK coverage: 0.8
+Model: qwen3:1.7b
+Word: 在, Sentence: 我在家看电视。, Word usage: 0.0, HSK coverage: 0.8333333333333334
+Model: qwen3:1.7b
+Word: 的, Sentence: 我有苹果的。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 你, Sentence: 你来。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 我, Sentence: 我今天去公园散步。, Word usage: 1.0, HSK coverage: 0.6666666666666666
+Model: qwen3:0.6b
+Word: 是, Sentence: 这是狗。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 在, Sentence: 我在学习中文。, Word usage: 1.0, HSK coverage: 0.8
+Model: qwen3:0.6b
+Word: 的, Sentence: 的苹果, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen2.5:0.5b
+Word: 你, Sentence: 你好，世界！（这是一个 HSK 1 级的中文表达，仅用于示例，不能作为正式表述）, Word usage: 0.0, HSK coverage: 0.46153846153846156
+Model: qwen2.5:0.5b
+Word: 我, Sentence: 我很开心，因为我能帮助你解决问题。, Word usage: 1.0, HSK coverage: 0.65
+Model: qwen2.5:0.5b
+Word: 是, Sentence: 你是谁？, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen2.5:0.5b
+Word: 在, Sentence: 我将在学校学习。, Word usage: 1.0, HSK coverage: 0.8333333333333334
+Model: qwen2.5:0.5b
+Word: 的, Sentence: 我喜欢吃香蕉和苹果。, Word usage: 0.0, HSK coverage: 0.8571428571428571

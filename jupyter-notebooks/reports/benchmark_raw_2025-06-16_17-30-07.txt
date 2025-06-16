@@ -1,0 +1,54 @@
+Model: gpt-4.1-mini
+Word: 你, Sentence: 你是我的朋友。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 我, Sentence: 我喜欢学中文。, Word usage: 1.0, HSK coverage: 0.6
+Model: gpt-4.1-mini
+Word: 是, Sentence: 我 是 学生。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 在, Sentence: 我在学校学习。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 的, Sentence: 我喜欢的书在桌子上。, Word usage: 1.0, HSK coverage: 1.0
+Model: deepseek-r1:1.5b
+Word: 你, Sentence: 在课堂上提问：“你在吗？”, Word usage: 1.0, HSK coverage: 0.6363636363636364
+Model: deepseek-r1:1.5b
+Word: 我, Sentence: 我决定去超市购物。, Word usage: 1.0, HSK coverage: 0.5
+Model: deepseek-r1:1.5b
+Word: 是, Sentence: 是正确的，因为它们遵循规则。, Word usage: 1.0, HSK coverage: 0.4444444444444444
+Model: deepseek-r1:1.5b
+Word: 在, Sentence: 请用词语“在”造一个句子：请用词语“在”造一个句子：请用词语“在”造一个句子：请用词语“在”造一个句子。, Word usage: 1.0, HSK coverage: 0.4
+Model: deepseek-r1:1.5b
+Word: 的, Sentence: 我（是）看（是）（我看）, Word usage: 0.0, HSK coverage: 0.5
+Model: qwen3:1.7b
+Word: 你, Sentence: 你去学校吗？, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 我, Sentence: 我今天去学校。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 是, Sentence: 苹果是水果。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 在, Sentence: 我在书上。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 的, Sentence: 我有苹果的。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 你, Sentence: 你今天来得早。, Word usage: 1.0, HSK coverage: 0.8333333333333334
+Model: qwen3:0.6b
+Word: 我, Sentence: 我今天学英语。, Word usage: 1.0, HSK coverage: 0.6
+Model: qwen3:0.6b
+Word: 是, Sentence: 是春天，是花，是阳光。, Word usage: 1.0, HSK coverage: 0.6666666666666666
+Model: qwen3:0.6b
+Word: 在, Sentence: 在教室里，我学习。, Word usage: 1.0, HSK coverage: 0.7142857142857143
+Model: qwen3:0.6b
+Word: 的, Sentence: 妈妈的书很有趣。, Word usage: 1.0, HSK coverage: 0.9166666666666666
+Model: qwen2.5:0.5b
+Word: 你, Sentence: 你的头发已经花白了，可惜再也长不回来了。, Word usage: 1.0, HSK coverage: 0.5714285714285714
+Model: qwen2.5:0.5b
+Word: 我, Sentence: 我很高兴，因为这是我第一次去旅游。
+
+这句话既使用了 HSK 1 级的词汇“我”，也使用了原意相同的短语“很高兴”。在汉语中，“我很高兴”表达了一种快乐和满足的情感状态，而HSK 1 级词汇“因为我第一次去旅游”则传达了一个特定的情境。通过将这两个概念结合起来，我们可以构建一个完整的句子来体现这个关系，并且符合 HSK 1 级的词汇标准。, Word usage: 1.0, HSK coverage: 0.47126436781609193
+Model: qwen2.5:0.5b
+Word: 是, Sentence: 你是谁？, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen2.5:0.5b
+Word: 在, Sentence: 他正在公园里遛狗。, Word usage: 1.0, HSK coverage: 0.5
+Model: qwen2.5:0.5b
+Word: 的, Sentence: 这个句子应该用词：我的家在山的那一边。
+
+这是用 HSK 1 级词汇 "山"、"那边" 构成的一句话，它表达了在一个 HSK 1 级语境中所描述的地理位置或方位关系。, Word usage: 1.0, HSK coverage: 0.4672131147540984

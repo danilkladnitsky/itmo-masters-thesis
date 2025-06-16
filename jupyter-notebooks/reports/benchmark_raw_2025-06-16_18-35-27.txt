@@ -1,0 +1,69 @@
+Model: gpt-4.1-mini
+Word: 你, Sentence: 你是我的朋友。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 我, Sentence: 我喜欢吃苹果。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 是, Sentence: 他是我的朋友。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 在, Sentence: 我在家吃饭。, Word usage: 1.0, HSK coverage: 0.875
+Model: gpt-4.1-mini
+Word: 的, Sentence: 我喜欢的书在桌子上。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 他, Sentence: 他是我的朋友。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 了, Sentence: 我吃饭了。, Word usage: 1.0, HSK coverage: 0.875
+Model: gpt-4.1-mini
+Word: 什么, Sentence: 你喜欢什么？, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 吗, Sentence: 你好吗？, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 喜欢, Sentence: 我喜欢吃苹果。, Word usage: 1.0, HSK coverage: 1.0
+Model RESULTS: gpt-4.1-mini
+Average word usage: 1.0
+Average HSK coverage: 0.975
+Model: deepseek-r1:1.5b
+Word: 你, Sentence: 你吃饭了吗？, Word usage: 1.0, HSK coverage: 0.9
+Model: deepseek-r1:1.5b
+Word: 我, Sentence: 我知道你。, Word usage: 1.0, HSK coverage: 0.75
+Model: deepseek-r1:1.5b
+Word: 是, Sentence: “是的，我们去吧。”, Word usage: 1.0, HSK coverage: 0.6666666666666666
+Model: deepseek-r1:1.5b
+Word: 在, Sentence: 在雨中走, Word usage: 1.0, HSK coverage: 0.25
+Model: deepseek-r1:1.5b
+Word: 的, Sentence: 我在我的书里, Word usage: 1.0, HSK coverage: 0.9
+Model: deepseek-r1:1.5b
+Word: 他, Sentence: 我是一个人，很有智慧。, Word usage: 0.0, HSK coverage: 0.8888888888888888
+Sentence: The first day of the school year was earlier than on other days. is not written in Chinese
+Word: 了, Sentence: The first day of the school year was earlier than on other days., Word usage: 0, HSK coverage: 0
+Model: deepseek-r1:1.5b
+Word: 什么, Sentence: 我是什么地方？, Word usage: 1.0, HSK coverage: 0.8
+Model: deepseek-r1:1.5b
+Word: 吗, Sentence: 在数学课上，当遇到疑问时，请问老师怎么做？, Word usage: 0.0, HSK coverage: 0.6071428571428571
+Model: deepseek-r1:1.5b
+Word: 喜欢, Sentence: 我喜欢在图书馆里阅读书籍。, Word usage: 1.0, HSK coverage: 0.6666666666666667
+Model RESULTS: deepseek-r1:1.5b
+Average word usage: 0.7
+Average HSK coverage: 0.6429365079365079
+Model: qwen3:1.7b
+Word: 你, Sentence: 你吃饭了吗？, Word usage: 1.0, HSK coverage: 0.9
+Model: qwen3:1.7b
+Word: 我, Sentence: 我今天去学校。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 是, Sentence: 书是红色的。, Word usage: 1.0, HSK coverage: 0.8
+Model: qwen3:1.7b
+Word: 在, Sentence: 我在家。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 的, Sentence: 我爱的水果是苹果。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 他, Sentence: 他今天去学校。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 了, Sentence: 我吃了饭。, Word usage: 1.0, HSK coverage: 0.8888888888888888
+Model: qwen3:1.7b
+Word: 什么, Sentence: 什么颜色？, Word usage: 1.0, HSK coverage: 0.6666666666666666
+Model: qwen3:1.7b
+Word: 吗, Sentence: 我今天去学校了吗？, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 喜欢, Sentence: 我最喜欢苹果。, Word usage: 1.0, HSK coverage: 0.8
+Model RESULTS: qwen3:1.7b
+Average word usage: 1.0
+Average HSK coverage: 0.9055555555555557
