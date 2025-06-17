@@ -4,12 +4,12 @@ import { useMemo, useState } from 'react';
 import styles from './select-model.module.scss';
 
 interface SelectModelProps {
-    value: "api" | "local" | null;
+    value: "api" | "local" | undefined;
     onSubmit: (value: "api" | "local") => void;
 }
 
-export const SelectModel = ({ value, onSubmit }: SelectModelProps) => {
-    const [selectedValue, setSelectedValue] = useState<"api" | "local" | null>(value);
+export const SelectModel = ({ value = undefined, onSubmit }: SelectModelProps) => {
+    const [selectedValue, setSelectedValue] = useState<"api" | "local" | undefined>(value);
 
     const handleSubmit = () => {
         onSubmit(selectedValue as "api" | "local");
@@ -32,11 +32,11 @@ export const SelectModel = ({ value, onSubmit }: SelectModelProps) => {
                     <Text size="lg" fw={500}>Выберите тип модели</Text>
                     <SegmentedControl
                         data={data}
-                        value={selectedValue ?? undefined}
+                        defaultValue=''
                         onChange={(value) => setSelectedValue(value as "api" | "local")}
                         fullWidth
                     />
-                    <Button fullWidth onClick={handleSubmit}>Выбрать</Button>
+                    <Button disabled={!selectedValue} fullWidth onClick={handleSubmit}>Выбрать</Button>
                 </Stack>
             </Box>
         </Box>

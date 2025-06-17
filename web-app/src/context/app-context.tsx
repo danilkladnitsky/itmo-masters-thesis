@@ -1,18 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useGenerateGapTask } from "@/api/useGenerateGapTask";
 import { useGenerateWordBundles } from "@/api/useGenerateWordBundles";
+import { usePing } from "@/api/usePing";
 import { createLLMEngine, type LLMEngine } from "@/llm/engine";
 import type { Task, WordBundle } from "@/types";
 import { LLMEngineLoader } from "@/ui/llm-engine-loader/llm-engine-loader";
 import { SelectModel } from "@/ui/select-model/select-model";
 import type { InitProgressReport } from "@mlc-ai/web-llm";
 import { useSnackbar } from "notistack";
-import { createContext, useCallback, useContext, useMemo, useRef, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 
 interface AppContextType {
     llmProvider: "api" | "local";
     wordBundles: WordBundle[];
     gapTask: Task[];
+    isLive: boolean;
     generateWordBundles: () => Promise<void>;
     generateGapTask: (bundleIds: number[]) => Promise<void>;
 }
@@ -31,8 +33,9 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
     const { mutateAsync: generateWordBundlesWithApi } = useGenerateWordBundles();
     const { mutateAsync: generateGapTaskWithApi } = useGenerateGapTask();
+    const { data: isLive } = usePing();
 
-    const [llmProvider, setLlmProvider] = useState<"api" | "local" | null>(null);
+    const [llmProvider, setLlmProvider] = useState<"api" | "local" | undefined>(undefined);
     const [progressReport, setProgressReport] = useState<InitProgressReport>({ progress: 0, text: '', timeElapsed: 0 });
     const [wordBundles, setWordBundles] = useState<WordBundle[]>([]);
     const [gapTask, setGapTask] = useState<Task[]>([]);
@@ -84,7 +87,16 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         llmEngineRef.current = llmEngine
     }, []);
 
-    const value = useMemo(() => ({ llmProvider: llmProvider ?? "api", generateWordBundles, generateGapTask, gapTask, wordBundles }), [llmProvider, generateWordBundles, generateGapTask, gapTask, wordBundles]);
+    const value = useMemo(() => ({
+        llmProvider: llmProvider ?? "api",
+        generateWordBundles, generateGapTask, gapTask, wordBundles, isLive
+    }), [llmProvider, generateWordBundles, generateGapTask, gapTask, wordBundles, isLive]);
+
+    useEffect(() => {
+        if (isLive) {
+            enqueueSnackbar("Бэкенд доступен")
+        }
+    }, [isLive])
 
     if (!llmProvider) {
         return <SelectModel

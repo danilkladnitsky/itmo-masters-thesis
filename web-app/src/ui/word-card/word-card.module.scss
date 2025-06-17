@@ -11,6 +11,14 @@
     &:hover {
         border-color: $selected-color;
     }
+
+    @media (max-height: 800px) {
+        height: 150px;
+    }
+
+    @media (max-height: 600px) {
+        height: 100px;
+    }
 }
 
 .image {
@@ -38,6 +46,14 @@
     align-items: center;
     justify-content: center;
     color: $primary-color;
+
+    @media (max-height: 991px) {
+        font-size: 50px;
+    }
+
+    @media (max-height: 768px) {
+        font-size: 40px;
+    }
 }
 
 .selected {

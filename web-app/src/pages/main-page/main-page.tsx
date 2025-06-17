@@ -1,6 +1,7 @@
+import { PageWrapper } from "@/ui/page-wrapper/page-wrapper"
 
 export const MainPage = () => {
     return (
-        <div>MainPage</div>
+        <PageWrapper>MainPage</PageWrapper>
     )
 }

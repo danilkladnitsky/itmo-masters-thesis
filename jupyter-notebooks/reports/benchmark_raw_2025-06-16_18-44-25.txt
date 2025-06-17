@@ -1,0 +1,325 @@
+Model: gpt-4.1-mini
+Word: 你, Sentence: 你是我的朋友。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 我, Sentence: 我喜欢吃苹果。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 是, Sentence: 我 是 学生。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 在, Sentence: 我在家里学习。, Word usage: 1.0, HSK coverage: 0.9
+Model: gpt-4.1-mini
+Word: 的, Sentence: 我喜欢吃的苹果很好吃。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 他, Sentence: 他是我的朋友。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 了, Sentence: 我吃饭了。, Word usage: 1.0, HSK coverage: 0.875
+Model: gpt-4.1-mini
+Word: 什么, Sentence: 你想吃什么？, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 吗, Sentence: 你好吗？, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 喜欢, Sentence: 我喜欢吃苹果。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 去, Sentence: 我明天去学校。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 想, Sentence: 我想吃苹果。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 她, Sentence: 她喜欢吃苹果。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 很, Sentence: 我很高兴。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 吃, Sentence: 我喜欢吃苹果。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 不, Sentence: 我不喜欢吃苹果。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 我们, Sentence: 我们去学校学习。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 谁, Sentence: 谁是你的老师？, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 呢, Sentence: 你喜欢吃什么呢？, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 哪里, Sentence: 你去哪里？, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 朋友, Sentence: 我有一个好朋友。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 这, Sentence: 这是一只猫。, Word usage: 1.0, HSK coverage: 0.875
+Model: gpt-4.1-mini
+Word: 工作, Sentence: 我每天七点开始工作。, Word usage: 1.0, HSK coverage: 0.75
+Model: gpt-4.1-mini
+Word: 来, Sentence: 他来学校学习。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 现在, Sentence: 我现在吃饭。, Word usage: 1.0, HSK coverage: 0.875
+Model: gpt-4.1-mini
+Word: 做, Sentence: 我每天做作业。, Word usage: 1.0, HSK coverage: 0.5833333333333333
+Model: gpt-4.1-mini
+Word: 没有, Sentence: 我没有水。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 说, Sentence: 他喜欢说中文。, Word usage: 1.0, HSK coverage: 0.8
+Model: gpt-4.1-mini
+Word: 好, Sentence: 这本书很好。, Word usage: 1.0, HSK coverage: 1.0
+Model: gpt-4.1-mini
+Word: 睡觉, Sentence: 我晚上十点睡觉。, Word usage: 1.0, HSK coverage: 0.9
+Model RESULTS: gpt-4.1-mini
+Average word usage: 1.0
+Average HSK coverage: 0.9519444444444444
+Model: deepseek-r1:1.5b
+Word: 你, Sentence: 我在做的事情是……（填具体动作）, Word usage: 0.0, HSK coverage: 0.38461538461538464
+Model: deepseek-r1:1.5b
+Word: 我, Sentence: 我好, Word usage: 1.0, HSK coverage: 1.0
+Model: deepseek-r1:1.5b
+Word: 是, Sentence: 是正确的。, Word usage: 1.0, HSK coverage: 0.75
+Model: deepseek-r1:1.5b
+Word: 在, Sentence: 在图书馆看书。, Word usage: 1.0, HSK coverage: 0.8333333333333333
+Model: deepseek-r1:1.5b
+Word: 的, Sentence: 我的手机里有**的**文件。, Word usage: 1.0, HSK coverage: 0.4166666666666667
+Model: deepseek-r1:1.5b
+Word: 他, Sentence: 他（he）是学生老师的先生。, Word usage: 1.0, HSK coverage: 0.7
+Model: deepseek-r1:1.5b
+Word: 了, Sentence: 我已经完成了任务了。, Word usage: 1.0, HSK coverage: 0.5714285714285714
+Model: deepseek-r1:1.5b
+Word: 什么, Sentence: 我叫你什么名字？, Word usage: 1.0, HSK coverage: 1.0
+Model: deepseek-r1:1.5b
+Word: 吗, Sentence: 了吗？你怎么样？, Word usage: 1.0, HSK coverage: 1.0
+Model: deepseek-r1:1.5b
+Word: 喜欢, Sentence: 我喜欢在房间里看动画片, Word usage: 1.0, HSK coverage: 0.5714285714285714
+Model: deepseek-r1:1.5b
+Word: 去, Sentence: He left the classroom.（他离开了教室）, Word usage: 0.0, HSK coverage: 0.39285714285714285
+Model: deepseek-r1:1.5b
+Word: 想, Sentence: 我想去图书馆。, Word usage: 1.0, HSK coverage: 0.8666666666666668
+Sentence: She is good. is not written in Chinese
+Word: 她, Sentence: She is good., Word usage: 0, HSK coverage: 0
+Model: deepseek-r1:1.5b
+Word: 很, Sentence: 她很厉害。, Word usage: 1.0, HSK coverage: 0.75
+Model: deepseek-r1:1.5b
+Word: 吃, Sentence: 吃东西在夏天很香, Word usage: 1.0, HSK coverage: 0.7
+Model: deepseek-r1:1.5b
+Word: 不, Sentence: 你对吗？, Word usage: 0.0, HSK coverage: 0.75
+Model: deepseek-r1:1.5b
+Word: 我们, Sentence: 我们是团队的一员。, Word usage: 1.0, HSK coverage: 0.75
+Model: deepseek-r1:1.5b
+Word: 谁, Sentence: 谁请客？, Word usage: 1.0, HSK coverage: 0.8333333333333334
+Model: deepseek-r1:1.5b
+Word: 呢, Sentence: 他吗去了吗？, Word usage: 0.0, HSK coverage: 1.0
+Model: deepseek-r1:1.5b
+Word: 哪里, Sentence: 哪里听？, Word usage: 1.0, HSK coverage: 1.0
+Model: deepseek-r1:1.5b
+Word: 朋友, Sentence: 我是朋友吗？, Word usage: 1.0, HSK coverage: 1.0
+Model: deepseek-r1:1.5b
+Word: 这, Sentence: 这下明白了。, Word usage: 1.0, HSK coverage: 0.75
+Sentence: to work at home is not written in Chinese
+Word: 工作, Sentence: to work at home, Word usage: 0, HSK coverage: 0
+Model: deepseek-r1:1.5b
+Word: 来, Sentence: 我来到新城市。（我来）, Word usage: 1.0, HSK coverage: 0.4375
+Model: deepseek-r1:1.5b
+Word: 现在, Sentence: 现在运动。, Word usage: 1.0, HSK coverage: 0.6666666666666666
+Model: deepseek-r1:1.5b
+Word: 做, Sentence: 做作业, Word usage: 1.0, HSK coverage: 0.3333333333333333
+Model: deepseek-r1:1.5b
+Word: 没有, Sentence: 没有下雨的天气, Word usage: 1.0, HSK coverage: 1.0
+Model: deepseek-r1:1.5b
+Word: 说, Sentence: 他学会了说话。, Word usage: 1.0, HSK coverage: 0.8
+Model: deepseek-r1:1.5b
+Word: 好, Sentence: 好的，我来试试看：
+
+“他读了一本好书。”
+
+其中“好”作为形容词使用，符合HSK 1级词汇的要求。
+
+**句子：**  
+他读了一本好书。, Word usage: 1.0, HSK coverage: 0.4666666666666666
+Sentence: He was lying down when he fell asleep. is not written in Chinese
+Word: 睡觉, Sentence: He was lying down when he fell asleep., Word usage: 0, HSK coverage: 0
+Model RESULTS: deepseek-r1:1.5b
+Average word usage: 0.7666666666666667
+Average HSK coverage: 0.6574832112332112
+Model: qwen3:1.7b
+Word: 你, Sentence: 你今天要来学校吗？, Word usage: 1.0, HSK coverage: 0.8571428571428571
+Model: qwen3:1.7b
+Word: 我, Sentence: 我今天去学校。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 是, Sentence: 书是红色的。, Word usage: 1.0, HSK coverage: 0.8
+Model: qwen3:1.7b
+Word: 在, Sentence: 在书上写字, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 的, Sentence: 我的书的封面是红色的。, Word usage: 1.0, HSK coverage: 0.7777777777777778
+Model: qwen3:1.7b
+Word: 他, Sentence: 他吃饭。, Word usage: 1.0, HSK coverage: 0.8333333333333334
+Model: qwen3:1.7b
+Word: 了, Sentence: 我吃了午饭。, Word usage: 1.0, HSK coverage: 0.8
+Model: qwen3:1.7b
+Word: 什么, Sentence: 什么花？, Word usage: 1.0, HSK coverage: 0.6666666666666666
+Model: qwen3:1.7b
+Word: 吗, Sentence: 你今天吃了吗？, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 喜欢, Sentence: 我最喜欢吃苹果。, Word usage: 1.0, HSK coverage: 0.8333333333333334
+Model: qwen3:1.7b
+Word: 去, Sentence: 我今天去学校。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 想, Sentence: 我想买书。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 她, Sentence: 她今天去学校。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 很, Sentence: 他很忙。, Word usage: 1.0, HSK coverage: 0.75
+Model: qwen3:1.7b
+Word: 吃, Sentence: 我吃晚饭。, Word usage: 1.0, HSK coverage: 0.7777777777777777
+Model: qwen3:1.7b
+Word: 不, Sentence: 我不喝水。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 我们, Sentence: 我们去公园。, Word usage: 1.0, HSK coverage: 0.75
+Model: qwen3:1.7b
+Word: 谁, Sentence: 谁在教室里？, Word usage: 1.0, HSK coverage: 0.6
+Model: qwen3:1.7b
+Word: 呢, Sentence: 我今天吃饭呢。, Word usage: 1.0, HSK coverage: 0.9
+Model: qwen3:1.7b
+Word: 哪里, Sentence: 哪里有苹果？, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 朋友, Sentence: 朋友是重要的。, Word usage: 1.0, HSK coverage: 0.8
+Model: qwen3:1.7b
+Word: 这, Sentence: 这本杂志很有趣。, Word usage: 1.0, HSK coverage: 0.7
+Model: qwen3:1.7b
+Word: 工作, Sentence: 我今天工作了一整天。, Word usage: 1.0, HSK coverage: 0.8888888888888888
+Model: qwen3:1.7b
+Word: 来, Sentence: 我来学校。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 现在, Sentence: 现在我正在看书。, Word usage: 1.0, HSK coverage: 0.9
+Model: qwen3:1.7b
+Word: 做, Sentence: 我做作业。, Word usage: 1.0, HSK coverage: 0.7777777777777777
+Model: qwen3:1.7b
+Word: 没有, Sentence: 我今天没有书。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 说, Sentence: 我今天说再见。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 好, Sentence: 好，我好想家。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:1.7b
+Word: 睡觉, Sentence: 我每天晚上睡觉。, Word usage: 1.0, HSK coverage: 0.8125
+Model RESULTS: qwen3:1.7b
+Average word usage: 1.0
+Average HSK coverage: 0.8741732804232804
+Model: qwen3:0.6b
+Word: 你, Sentence: 你来啦。, Word usage: 1.0, HSK coverage: 0.75
+Model: qwen3:0.6b
+Word: 我, Sentence: 我今天去学校。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 是, Sentence: 这是桌子。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 在, Sentence: 我在公园的树下，感到凉快。, Word usage: 1.0, HSK coverage: 0.6111111111111112
+Model: qwen3:0.6b
+Word: 的, Sentence: 一个苹果的。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 他, Sentence: 他今天去了学校。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 了, Sentence: 他吃了，了。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 什么, Sentence: 什么时间？, Word usage: 1.0, HSK coverage: 0.6666666666666666
+Model: qwen3:0.6b
+Word: 吗, Sentence: 我今天去上学吗？, Word usage: 1.0, HSK coverage: 0.9166666666666666
+Model: qwen3:0.6b
+Word: 喜欢, Sentence: 你喜欢吃苹果吗？, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 去, Sentence: 我今天去学校。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 想, Sentence: 我**想**去公园。, Word usage: 1.0, HSK coverage: 0.4444444444444444
+Model: qwen3:0.6b
+Word: 她, Sentence: 她今天去了学校。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 很, Sentence: 很安静的房间让我很放松。, Word usage: 1.0, HSK coverage: 0.5555555555555556
+Model: qwen3:0.6b
+Word: 吃, Sentence: 我吃了一顿饭。, Word usage: 1.0, HSK coverage: 0.8666666666666668
+Model: qwen3:0.6b
+Word: 不, Sentence: 不，不。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 我们, Sentence: 我们经常去公园。, Word usage: 1.0, HSK coverage: 0.6
+Model: qwen3:0.6b
+Word: 谁, Sentence: 谁去？, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 呢, Sentence: 爸爸呢在厨房做饭。, Word usage: 1.0, HSK coverage: 0.75
+Model: qwen3:0.6b
+Word: 哪里, Sentence: 哪里？, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 朋友, Sentence: 我有一个朋友，我们经常一起玩。, Word usage: 1.0, HSK coverage: 0.75
+Model: qwen3:0.6b
+Word: 这, Sentence: 这是一本书。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 工作, Sentence: 他每天的工作就是写作业。, Word usage: 1.0, HSK coverage: 0.6875
+Model: qwen3:0.6b
+Word: 来, Sentence: 来买苹果。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 现在, Sentence: 现在，太阳下山了。, Word usage: 1.0, HSK coverage: 0.8333333333333334
+Model: qwen3:0.6b
+Word: 做, Sentence: 我做作业。, Word usage: 1.0, HSK coverage: 0.7777777777777777
+Model: qwen3:0.6b
+Word: 没有, Sentence: 没有书，我们去学校。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 说, Sentence: 妈妈说今天要吃晚饭。, Word usage: 1.0, HSK coverage: 0.7222222222222223
+Model: qwen3:0.6b
+Word: 好, Sentence: 我今天好喝。, Word usage: 1.0, HSK coverage: 1.0
+Model: qwen3:0.6b
+Word: 睡觉, Sentence: 他睡觉的时候，阳光正好。, Word usage: 1.0, HSK coverage: 0.8125
+Model RESULTS: qwen3:0.6b
+Average word usage: 1.0
+Average HSK coverage: 0.8581481481481481
+Model: qwen2.5:0.5b
+Word: 你, Sentence: 你是一个聪明伶俐、善良可爱的小朋友，每天都在为自己的梦想努力奋斗。, Word usage: 1.0, HSK coverage: 0.5964912280701754
+Model: qwen2.5:0.5b
+Word: 我, Sentence: 我爱阅读，因为它能让我在文字的世界里遨游。, Word usage: 1.0, HSK coverage: 0.5625
+Model: qwen2.5:0.5b
+Word: 是, Sentence: 天空中的云像棉花糖一样柔软可爱。, Word usage: 0.0, HSK coverage: 0.2727272727272727
+Model: qwen2.5:0.5b
+Word: 在, Sentence: 我喜欢在这个阳光明媚的日子里和家人一起去公园散步。, Word usage: 1.0, HSK coverage: 0.6333333333333333
+Model: qwen2.5:0.5b
+Word: 的, Sentence: 今天天气真好，我们一起去公园散步吧！, Word usage: 0.0, HSK coverage: 0.5
+Model: qwen2.5:0.5b
+Word: 他, Sentence: 他的父母都在南方工作，而他的姐姐也在北方生活。, Word usage: 1.0, HSK coverage: 0.5882352941176471
+Model: qwen2.5:0.5b
+Word: 了, Sentence: “了”在这里表示“完了”。比如：我完成了工作了。
+
+这只是一个非常基础的练习，真正的掌握了HSK1级的词汇后，可能会用更复杂的表达方式来描述这个意思。, Word usage: 1.0, HSK coverage: 0.48
+Model: qwen2.5:0.5b
+Word: 什么, Sentence: 我最喜欢的是蓝色的天空，就像一幅美丽的画卷。, Word usage: 0.0, HSK coverage: 0.53125
+Model: qwen2.5:0.5b
+Word: 吗, Sentence: “你今天干什么去了？”这句话是用 HSK 1 级词汇表达的。, Word usage: 0.0, HSK coverage: 0.5227272727272727
+Model: qwen2.5:0.5b
+Word: 喜欢, Sentence: 我喜欢在公园里散步，享受大自然的美丽风光。, Word usage: 1.0, HSK coverage: 0.48717948717948717
+Model: qwen2.5:0.5b
+Word: 去, Sentence: 你今天好好休息吧，明天会更精彩。, Word usage: 0.0, HSK coverage: 0.6363636363636364
+Model: qwen2.5:0.5b
+Word: 想, Sentence: 我想去日本旅游。, Word usage: 1.0, HSK coverage: 0.75
+Model: qwen2.5:0.5b
+Word: 她, Sentence: 她是我们的语文老师，她教我们如何学习汉语。, Word usage: 1.0, HSK coverage: 0.7857142857142857
+Model: qwen2.5:0.5b
+Word: 很, Sentence: 我很高兴今天能与你在这里交谈。, Word usage: 1.0, HSK coverage: 0.7727272727272727
+Model: qwen2.5:0.5b
+Word: 吃, Sentence: "吃了饭，我正在准备晚餐。", Word usage: 1.0, HSK coverage: 0.4629629629629629
+Model: qwen2.5:0.5b
+Word: 不, Sentence: 我今天没空玩。, Word usage: 0.0, HSK coverage: 0.6
+Model: qwen2.5:0.5b
+Word: 我们, Sentence: 当我们看到一只大雁从天空飞过时，我们心中涌起一股强烈的思念之情。, Word usage: 1.0, HSK coverage: 0.3684210526315789
+Model: qwen2.5:0.5b
+Word: 谁, Sentence: 谁说你们不会游泳？, Word usage: 1.0, HSK coverage: 0.75
+Model: qwen2.5:0.5b
+Word: 呢, Sentence: 嗯，您好！很高兴见到您！, Word usage: 0.0, HSK coverage: 0.6111111111111112
+Model: qwen2.5:0.5b
+Word: 哪里, Sentence: 我在这儿哪里？（在这里/什么地方）, Word usage: 1.0, HSK coverage: 0.5833333333333334
+Model: qwen2.5:0.5b
+Word: 朋友, Sentence: 我的朋友是我在大学时的导师，他总是乐于助人，经常在我的学习和生活中给予我指导和帮助。, Word usage: 1.0, HSK coverage: 0.6637931034482759
+Model: qwen2.5:0.5b
+Word: 这, Sentence: 这是一杯热腾腾的咖啡。, Word usage: 1.0, HSK coverage: 0.6388888888888888
+Model: qwen2.5:0.5b
+Word: 工作, Sentence: 我喜欢在周末做一些家务活，比如洗衣服、扫地和整理书桌，这可以帮助我更快的完成工作任务。, Word usage: 1.0, HSK coverage: 0.5493827160493827
+Model: qwen2.5:0.5b
+Word: 来, Sentence: 来年你将不再是昔日的少年。, Word usage: 1.0, HSK coverage: 0.75
+Model: qwen2.5:0.5b
+Word: 现在, Sentence: 现在，我正在学习中文，以便更好地理解这个语言。, Word usage: 1.0, HSK coverage: 0.5714285714285714
+Model: qwen2.5:0.5b
+Word: 做, Sentence: 她正在做早餐，为即将到来的聚会准备食物。, Word usage: 1.0, HSK coverage: 0.5
+Model: qwen2.5:0.5b
+Word: 没有, Sentence: "没有时间去考虑这个问题"。, Word usage: 1.0, HSK coverage: 0.4444444444444444
+Model: qwen2.5:0.5b
+Word: 说, Sentence: 说书人说了一大堆故事，让人听得如痴如醉。, Word usage: 1.0, HSK coverage: 0.638888888888889
+Model: qwen2.5:0.5b
+Word: 好, Sentence: 我喜欢在晚上听音乐，这听起来很好。
+这句话使用了 HSK 1 级词汇“喜欢”和“听音乐”，同时也表达了对夜晚的美好感受。, Word usage: 1.0, HSK coverage: 0.5227272727272727
+Model: qwen2.5:0.5b
+Word: 睡觉, Sentence: 睡觉是午睡，午睡就是休息。, Word usage: 1.0, HSK coverage: 0.5625
+Model RESULTS: qwen2.5:0.5b
+Average word usage: 0.7666666666666667
+Average HSK coverage: 0.5779043809625032

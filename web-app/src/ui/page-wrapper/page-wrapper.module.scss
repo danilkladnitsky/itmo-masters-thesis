@@ -1,7 +1,18 @@
+
+$header: 0px;
+
 .wrapper {
     position: relative;
-    height: 100vh;
+    height: calc(100vh - $header);
     width: 100vw;
     padding: 24px;
     box-sizing: border-box;
+}
+
+.header {
+    height: $header;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
 }

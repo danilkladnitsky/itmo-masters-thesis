@@ -16,6 +16,10 @@
     font-family: "LXGW WenKai Mono TC", monospace;
     font-weight: 500;
     font-size: 44px;
+
+    @media (max-width: 768px) {
+        font-size: 30px;
+    }
 }
 
 .gapWrapper {
@@ -40,6 +44,11 @@
     transition: border 0.2s ease-in-out;
     
     border: 2px dashed $surface-color;
+
+
+    @media (max-width: 768px) {
+        min-height: 30px;
+    }
 }
 
 .dot {

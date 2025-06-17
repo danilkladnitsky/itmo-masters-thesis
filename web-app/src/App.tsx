@@ -25,7 +25,6 @@ const theme = createTheme({
 
 function App() {
   return (
-
     <SnackbarProvider >
       <MantineProvider theme={theme} defaultColorScheme='light'>
         <QueryClientProvider client={queryClient}>
