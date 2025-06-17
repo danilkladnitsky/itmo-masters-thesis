@@ -23,7 +23,7 @@ export const ProgressBar = ({ value = 50, currentStep = 7, totalSteps = 10, onCl
             <Box className={styles.wrapper}>
                 <CloseButton size='lg' onClick={onClose} />
                 <Box className={styles.progressWrapper}>
-                    <Progress size="sm" value={value} color={color} animated={isLoading || animated} />
+                    <Progress transitionDuration={200} size="sm" value={value} color={color} animated={isLoading || animated} />
                 </Box>
                 <Box className={styles.stepsWrapper}>
                     <Text fw={600} className={styles.currentStep}>{currentStep}</Text>
