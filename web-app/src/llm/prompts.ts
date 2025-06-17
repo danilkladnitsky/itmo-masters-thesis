@@ -57,3 +57,24 @@ Response should be in JSON format.
 Example: 
 ${GAP_TASK_EXAMPLE}
 `
+
+
+export const generateWordBundlesPrompt = () => {
+  return `请生成6个主题词汇包。
+
+完整版本如下：
+
+你需要根据主题生成一个HSK 1级词汇列表。输出格式应为JSON。请生成6个主题词汇包。
+例如：
+[
+    {
+        "bundleName": "时间",
+        "words": ["今天", "昨天", "明天"]
+    },
+    {
+        "bundleName": "动物",
+        "words": ["猫", "狗", "鸟"]
+    }
+]
+`
+}

@@ -7,10 +7,10 @@ import { IconCheck, IconChevronRight } from '@tabler/icons-react';
 import styles from './build-sentence-page.module.scss'
 
 import { useNavigate } from 'react-router'
-import { useStore } from '@/store'
+import { useAppContext } from '@/context/app-context'
 
 export const BuildSentencePage = () => {
-    const { tasks } = useStore()
+    const { gapTask } = useAppContext()
 
     const [currentStep, setCurrentStep] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
@@ -18,11 +18,9 @@ export const BuildSentencePage = () => {
     const [selectedWord, setSelectedWord] = useState<string | null>(null);
     const navigate = useNavigate()
 
-    console.log(tasks)
-
     const currentTask = useMemo(() => {
-        return tasks[currentStep]
-    }, [tasks, currentStep])
+        return gapTask[currentStep]
+    }, [gapTask, currentStep])
 
 
     useEffect(() => {
@@ -46,7 +44,7 @@ export const BuildSentencePage = () => {
     const onNext = () => {
         const nextStep = currentStep + 1;
 
-        if (nextStep >= tasks.length) {
+        if (nextStep >= gapTask.length) {
             navigate('/')
             return
         }
@@ -94,7 +92,7 @@ export const BuildSentencePage = () => {
                     word: option,
                 }))}
                 currentStep={currentStep}
-                totalSteps={tasks.length}
+                totalSteps={gapTask.length}
                 selectedWord={selectedWord}
                 onSelect={onSelect}
                 onBack={onBack}

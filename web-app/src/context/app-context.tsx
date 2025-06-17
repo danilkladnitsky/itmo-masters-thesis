@@ -15,6 +15,7 @@ interface AppContextType {
     wordBundles: WordBundle[];
     gapTask: Task[];
     isLive: boolean;
+    generatedTaskCount: number;
     generateWordBundles: () => Promise<void>;
     generateGapTask: (bundleIds: number[]) => Promise<void>;
 }
@@ -40,31 +41,30 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const [wordBundles, setWordBundles] = useState<WordBundle[]>([]);
     const [gapTask, setGapTask] = useState<Task[]>([]);
 
-    const generateWordBundlesWithLocal = useCallback(async (): Promise<WordBundle[]> => {
+    const [generatedTaskCount, setGeneratedTaskCount] = useState(0)
+
+    const generateGapTaskWithLocal = useCallback(async (selectedWordBundles: WordBundle[]): Promise<Task[]> => {
         const llmEngine = llmEngineRef.current;
         if (!llmEngine) return [];
 
-        const result = await llmEngine.generateWordBundles("Generate a sentence about a cat");
-        return result;
-    }, []);
-
-    const generateGapTaskWithLocal = useCallback(async (): Promise<Task[]> => {
-        const llmEngine = llmEngineRef.current;
-        if (!llmEngine) return [];
-        const result = await llmEngine.generateGapTask(wordBundles);
+        const result = await llmEngine.generateGapTask(selectedWordBundles, () => {
+            setGeneratedTaskCount(prev => prev + 1)
+        });
 
         return result;
     }, [wordBundles]);
 
     const generateWordBundles = useCallback(async () => {
-        const result = llmProvider === "api" ? await generateWordBundlesWithApi() : await generateWordBundlesWithLocal();
+        const result = await generateWordBundlesWithApi();
         setWordBundles(result);
     }, [llmProvider]);
 
-    const generateGapTask = useCallback(async () => {
+    const generateGapTask = useCallback(async (ids: number[]) => {
+        const selectedBundles = wordBundles.filter(bundle => ids.includes(bundle.id));
+
         const result = llmProvider === "api" ?
-            await generateGapTaskWithApi(wordBundles.map(bundle => bundle.id))
-            : await generateGapTaskWithLocal();
+            await generateGapTaskWithApi(ids)
+            : await generateGapTaskWithLocal(selectedBundles);
 
         setGapTask(result);
     }, [llmProvider, wordBundles]);
@@ -80,7 +80,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
     const initLLMEngine = useCallback(async () => {
         const llmEngine = await createLLMEngine({
-            model: "Qwen2.5-0.5B-Instruct-q4f16_1-MLC",
+            model: "Qwen3-0.6B-q4f16_1-MLC",
             initProgressCallback: onInitProgress,
         });
 
@@ -89,8 +89,8 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
     const value = useMemo(() => ({
         llmProvider: llmProvider ?? "api",
-        generateWordBundles, generateGapTask, gapTask, wordBundles, isLive
-    }), [llmProvider, generateWordBundles, generateGapTask, gapTask, wordBundles, isLive]);
+        generateWordBundles, generateGapTask, gapTask, wordBundles, isLive, generatedTaskCount
+    }), [llmProvider, generateWordBundles, generateGapTask, gapTask, wordBundles, isLive, generatedTaskCount]);
 
     useEffect(() => {
         if (isLive) {
