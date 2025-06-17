@@ -1,15 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { PageWrapper } from "@/ui/page-wrapper/page-wrapper"
 import { WordCard } from "@/ui/word-card/word-card"
-import { Box, Button, Progress, SimpleGrid, Skeleton, Stack, Text } from "@mantine/core"
+import { Box, Button, Center, SimpleGrid, Skeleton, Stack, Text } from "@mantine/core"
 
 import styles from './construct-task-page.module.scss'
 import { useEffect, useMemo, useState } from "react"
 import { useNavigate } from "react-router"
 import { useAppContext } from "@/context/app-context"
+import { ProgressBar } from "@/ui/progress-bar/progress-bar"
 
 export const ConstructTaskPage = () => {
-    const { generateWordBundles, generateGapTask, wordBundles, generatedTaskCount } = useAppContext()
+    const { generateWordBundles, generateGapTask, llmProvider, wordBundles, generatedTaskCount } = useAppContext()
     const [selectedBundleIds, setSelectedBundleIds] = useState<number[]>([])
     const navigate = useNavigate()
 
@@ -59,11 +60,19 @@ export const ConstructTaskPage = () => {
     }, [wordBundles])
 
 
-    if (isGenerating) {
+    const totalProgress = useMemo(() => {
+        return generatedTaskCount / Math.min(words.length, 6) * 100
+    }, [generatedTaskCount, words.length])
+
+    if (isGenerating && llmProvider === 'local') {
         return <PageWrapper>
             <Stack gap={16} className={styles.constructorContainer}>
-                <Text>Генерируем задания с помощью ИИ...</Text>
-                <Progress value={generatedTaskCount / Math.min(words.length, 6) * 100} />
+                <ProgressBar animated color="grape" value={totalProgress} currentStep={generatedTaskCount} totalSteps={Math.min(words.length, 6)} onClose={() => {
+                    window.location.reload()
+                }} />
+                <Center>
+                    <Text>Генерируем задания с помощью ИИ...</Text>
+                </Center>
             </Stack>
         </PageWrapper>
     }

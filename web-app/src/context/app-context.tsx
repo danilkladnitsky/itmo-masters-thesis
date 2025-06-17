@@ -67,6 +67,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
             : await generateGapTaskWithLocal(selectedBundles);
 
         setGapTask(result);
+        setGeneratedTaskCount(0)
     }, [llmProvider, wordBundles]);
 
     const onInitProgress = useCallback(({ progress, text, timeElapsed }: InitProgressReport) => {

@@ -42,7 +42,7 @@ export const BuildSentenceWidget = ({ isLoading, solveStatus = 'pending', senten
     return (
         <Box className={styles.wrapper}>
             <Stack justify='space-between' h='100%'>
-                <ProgressBar value={currentStep / totalSteps * 100} currentStep={currentStep} totalSteps={totalSteps} onClose={onBack} />
+                <ProgressBar value={currentStep / totalSteps * 100} currentStep={currentStep} totalSteps={totalSteps} onClose={onClose} />
                 <Box className={styles.taskWrapper} key={currentStep}>
                     <motion.div
                         initial={{ opacity: 0 }}
