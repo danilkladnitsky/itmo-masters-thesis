@@ -20,7 +20,7 @@ app = FastAPI(title="Model Training Service")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://frontend.daimao.ru", "https://daimao.ru", "http://localhost:5173"],
+    allow_origins=["https://daimao.1431207-ck39036.tw1.ru", "https://daimao.ru", "http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
