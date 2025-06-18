@@ -40,19 +40,30 @@ class GapTaskService:
 
         gap_tasks = []
 
+        id_counter = 0
         for word in selected_words:
             sentence = self.generate_sentence_with_word(word)
             tokens = sentence.split()
             if word in tokens:
-                gap_sentence = sentence.replace(word, "____", 1)
+                gap_sentence = sentence.replace(word, "_", 1)
             else:
                 # Try a fuzzy match or fallback
-                gap_sentence = sentence.replace(word[0], "____", 1)
+                gap_sentence = sentence.replace(word[0], "_", 1)
+
+
+            options = []
+            for token in tokens:
+                if token != word:
+                    options.append(token)
+            options = random.sample(options, min(4, len(options)))
 
             gap_tasks.append({
-                "word": word,
-                "original": sentence,
-                "gap_sentence": gap_sentence
+                "id": id_counter,
+                "answer": word,
+                "options": options,
+                "sentence": gap_sentence.split()
             })
+
+            id_counter += 1
 
         return gap_tasks
