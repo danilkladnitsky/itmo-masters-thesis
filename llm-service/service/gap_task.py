@@ -25,7 +25,7 @@ class GapTaskService:
 
     def generate_sentence_with_word(self, word: str) -> str:
         # /no_think 请用词语“跑步”造一个句子，只使用 HSK 1 级词汇，并且只写一句话。
-        prompt = f"请用词语“{word}”造一个句子，只使用 HSK 1 级词汇，句子中不少于五个词，并且只写一句话。"
+        prompt = f"请用词语“{word}”造一个句子，只使用 HSK 1 级词汇，并且只写一句话。"
         response = requests.post(OLLAMA_URL, json={
             "model": OLLAMA_MODEL,
             "prompt": prompt,
@@ -44,7 +44,9 @@ class GapTaskService:
         id_counter = 0
         for word in selected_words:
             sentence = self.generate_sentence_with_word(word)
+            print(sentence)
             gap_sentence = sentence.replace(word, "_", 1)
+            gap_sentence = gap_sentence.replace("，", "")
 
             # Options: correct + 3 random incorrect from words list
             distractors = [w for w in words if w != word]
@@ -52,13 +54,21 @@ class GapTaskService:
             options.append(word)
             random.shuffle(options)
 
+            print(gap_sentence)
+
+            if len(list(jieba.cut(gap_sentence))) < 2:
+                continue
+
             gap_tasks.append({
                 "id": id_counter,
                 "answer": word,
                 "options": options,
-                "sentence": list(jieba.cut(gap_sentence))
+                "sentence": list(jieba.cut(gap_sentence)),
+                "original": sentence
             })
 
             id_counter += 1
+
+        gap_tasks.sort(key=lambda x: len(x["sentence"]), reverse=True)
 
         return gap_tasks

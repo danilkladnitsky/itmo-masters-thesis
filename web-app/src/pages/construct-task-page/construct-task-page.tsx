@@ -64,12 +64,13 @@ export const ConstructTaskPage = () => {
         return generatedTaskCount / Math.min(words.length, APP_CONFIG.MAX_TASK_COUNT) * 100
     }, [generatedTaskCount, words.length])
 
-    if (isGenerating && llmProvider === 'local') {
+    if (isGenerating) {
         return <PageWrapper>
             <Stack gap={16} className={styles.constructorContainer}>
-                <ProgressBar animated color="grape" value={totalProgress} currentStep={generatedTaskCount} totalSteps={Math.min(words.length, APP_CONFIG.MAX_TASK_COUNT)} onClose={() => {
-                    window.location.reload()
-                }} />
+                {llmProvider === 'local' &&
+                    <ProgressBar animated color="grape" value={totalProgress} currentStep={generatedTaskCount} totalSteps={Math.min(words.length, APP_CONFIG.MAX_TASK_COUNT)} onClose={() => {
+                        window.location.reload()
+                    }} />}
                 <Center>
                     <Text>Генерируем задания с помощью ИИ...</Text>
                 </Center>
