@@ -43,97 +43,99 @@ export async function createLLMEngine({ model, initProgressCallback }: CreateLLM
 
     console.info('received prompt', prompt);
 
+    const startTime = performance.now();
     const response = await engine.chatCompletion({
         ...LLM_CONFIG,
         model,
       messages,
     });
-      
+    const endTime = performance.now();
+    const inferenceTime = endTime - startTime;
+    console.info(`Inference completed in ${inferenceTime.toFixed(2)}ms`);
 
-
-      const text = response.choices[0].message.content;
-      if (!text) {
-        return '';
-      }
-      console.info('response', 'prompt:', text);
-      fn?.(text)
-
-      return text;
-    } catch (error) {
-      console.log(error)
-      return ''
-      
+    const text = response.choices[0].message.content;
+    if (!text) {
+      return '';
     }
-  }
+    console.info('response', 'prompt:', text);
+    fn?.(text)
 
-  const generateWordBundles = async () => {
-    const response = await generateText(generateWordBundlesPrompt())
-    const wordBundles = JSON.parse(response) as WordBundle[]
-
-    return wordBundles
-  }
-
-  const generateGapTask = async (wordBundles: WordBundle[], onTaskGeneration: () => void) => {
-    const promptFn = (v: string) => ({
-      prompt: `请用词语"${v}"造一个句子，只使用 HSK 1 级词汇，并且只写一句话。`,
-      word: v
-    })
-
-    const words = wordBundles.flatMap(w => w.words)
-      .sort(() => Math.random() - 0.5)
-      .slice(0, APP_CONFIG.MAX_TASK_COUNT)
-
-    const promptList = words.map(promptFn)
+    return text;
+  } catch (error) {
+    console.log(error)
+    return ''
     
-    const handleTaskGeneration = () => {
-      onTaskGeneration()
-    }
-
-    const promptsPromisesList = promptList.map(o => generateText(o.prompt, handleTaskGeneration).then(sentence => ({
-      sentence,
-      word: o.word
-    })))
-
-    const resultList = await Promise.allSettled(promptsPromisesList)
-
-    const removeThink = (response: string): string => {
-      return response.replace(/<[^>]*>/g, '')
-        .replace(/[^\u4e00-\u9fa5]/g, '')
-    }
-
-    const response: Task[] = []
-
-    resultList.forEach(result => {
-      if (result.status === 'fulfilled') {
-        const { sentence: rawSentence, word } = result.value
-        const sentence = removeThink(rawSentence).replace(word, APP_CONFIG.GAP_CHARACTER).split('')
-
-        const existingWords = response.map(t => t.options).flat()
-        const options = wordBundles.flatMap(w => w.words)
-        .filter(w => w !== word && !existingWords.includes(w))
-          .sort(() => Math.random() - 0.5)
-          .slice(0, 3)
-
-        const task: Task = {
-          id: 0,
-          options: [...options, word],
-          sentence,
-          answer: word
-        }
-
-        response.push(task)
-      }
-    })
-
-    console.log(response)
-    return response
   }
+}
+
+const generateWordBundles = async () => {
+  const response = await generateText(generateWordBundlesPrompt())
+  const wordBundles = JSON.parse(response) as WordBundle[]
+
+  return wordBundles
+}
+
+const generateGapTask = async (wordBundles: WordBundle[], onTaskGeneration: () => void) => {
+  const promptFn = (v: string) => ({
+    prompt: `请用词语"${v}"造一个句子，只使用 HSK 1 级词汇，并且只写一句话。`,
+    word: v
+  })
+
+  const words = wordBundles.flatMap(w => w.words)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, APP_CONFIG.MAX_TASK_COUNT)
+
+  const promptList = words.map(promptFn)
+  
+  const handleTaskGeneration = () => {
+    onTaskGeneration()
+  }
+
+  const promptsPromisesList = promptList.map(o => generateText(o.prompt, handleTaskGeneration).then(sentence => ({
+    sentence,
+    word: o.word
+  })))
+
+  const resultList = await Promise.allSettled(promptsPromisesList)
+
+  const removeThink = (response: string): string => {
+    return response.replace(/<[^>]*>/g, '')
+      .replace(/[^\u4e00-\u9fa5]/g, '')
+  }
+
+  const response: Task[] = []
+
+  resultList.forEach(result => {
+    if (result.status === 'fulfilled') {
+      const { sentence: rawSentence, word } = result.value
+      const sentence = removeThink(rawSentence).replace(word, APP_CONFIG.GAP_CHARACTER).split('')
+
+      const existingWords = response.map(t => t.options).flat()
+      const options = wordBundles.flatMap(w => w.words)
+      .filter(w => w !== word && !existingWords.includes(w))
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3)
+
+      const task: Task = {
+        id: 0,
+        options: [...options, word],
+        sentence,
+        answer: word
+      }
+
+      response.push(task)
+    }
+  })
+
+  console.log(response)
+  return response
+}
 
   
-    return {
-        engine,
-      generateText,
-      generateWordBundles,
-      generateGapTask,
-    }
+  return {
+      engine,
+    generateText,
+    generateWordBundles,
+    generateGapTask,
+  }
 }
