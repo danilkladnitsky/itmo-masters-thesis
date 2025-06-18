@@ -3,7 +3,7 @@ import random
 import requests
 
 PATH_TO_WORD_BUNDLES = "data/word_bundles.json"
-MAX_WORDS_IN_TASK = 10
+MAX_WORDS_IN_TASK = 5
 OLLAMA_URL = "http://localhost:11434/api/generate"
 OLLAMA_URL = "https://ollama-daimao.1431207-ck39036.tw1.ru/api/generate"
 OLLAMA_MODEL = "qwen3:0.6b"
@@ -43,19 +43,13 @@ class GapTaskService:
         id_counter = 0
         for word in selected_words:
             sentence = self.generate_sentence_with_word(word)
-            tokens = sentence.split()
-            if word in tokens:
-                gap_sentence = sentence.replace(word, "_", 1)
-            else:
-                # Try a fuzzy match or fallback
-                gap_sentence = sentence.replace(word[0], "_", 1)
+            gap_sentence = sentence.replace(word, "_", 1)
 
-
-            options = []
-            for token in tokens:
-                if token != word:
-                    options.append(token)
-            options = random.sample(options, min(4, len(options)))
+            # Options: correct + 3 random incorrect from words list
+            distractors = [w for w in words if w != word]
+            options = random.sample(distractors, min(3, len(distractors)))
+            options.append(word)
+            random.shuffle(options)
 
             gap_tasks.append({
                 "id": id_counter,

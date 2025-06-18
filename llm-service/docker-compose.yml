@@ -13,10 +13,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1.5'       # Leaves headroom for the OS
-          memory: 5g         # Keeps ~2GB free for system & Docker overhead
+          cpus: '1.75'       # Leaves headroom for the OS
+          memory: 4g         # Keeps ~2GB free for system & Docker overhead
         reservations:
-          cpus: '1.0'
+          cpus: '1.25'
           memory: 2g
 
 volumes:
