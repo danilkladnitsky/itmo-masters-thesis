@@ -38,7 +38,7 @@ export async function createLLMEngine({ model, initProgressCallback }: CreateLLM
 	2.	只能使用HSK 1级词汇（包括标点符号）。
 	3.	只写一句完整的话，不要添加解释或其他内容。
 	4.	返回内容必须是干净的句子，没有额外说明或格式符号。`},
-        { role: "user", content: prompt }
+        { role: "user", content: `/no_think ${prompt}` }
     ]
 
     console.info('received prompt', prompt);
