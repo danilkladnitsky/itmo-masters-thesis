@@ -2,7 +2,6 @@ import { Button, Icon, Select } from '@gravity-ui/uikit';
 import { useNavigate } from 'react-router';
 import styled from '@emotion/styled';
 import { ListCheck, TextAlignLeft } from '@gravity-ui/icons';
-import { useState } from 'react';
 
 const Container = styled.div`
     display: flex;
@@ -44,7 +43,6 @@ const ButtonsContainer = styled.div`
 
 export const StartPage = () => {
     const navigate = useNavigate();
-    const [selectedTask, setSelectedTask] = useState<string>('hsk_1');
 
     const handleTaskSelect = (taskType: 'sentence' | 'test') => {
         navigate(`/${taskType}-generator`);

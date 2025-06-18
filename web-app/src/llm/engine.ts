@@ -81,7 +81,7 @@ export async function createLLMEngine({ model, initProgressCallback }: CreateLLM
 
     const words = wordBundles.flatMap(w => w.words)
       .sort(() => Math.random() - 0.5)
-      .slice(0, 6)
+      .slice(0, APP_CONFIG.MAX_TASK_COUNT)
 
     const promptList = words.map(promptFn)
     
@@ -97,21 +97,15 @@ export async function createLLMEngine({ model, initProgressCallback }: CreateLLM
     const resultList = await Promise.allSettled(promptsPromisesList)
 
     const removeThink = (response: string): string => {
-      const match = response.match(/<\/think>\s*(.+)/s)
-      if (match && match[1]) {
-        return match[1].trim()
-      }
-      return response.trim() // fallback in case no <think> tag
+      return response.replace(/<[^>]*>/g, '')
+        .replace(/[^\u4e00-\u9fa5]/g, '')
     }
 
     const response: Task[] = []
 
-    console.log(resultList)
-
     resultList.forEach(result => {
       if (result.status === 'fulfilled') {
         const { sentence: rawSentence, word } = result.value
-
         const sentence = removeThink(rawSentence).replace(word, APP_CONFIG.GAP_CHARACTER).split('')
 
         const existingWords = response.map(t => t.options).flat()

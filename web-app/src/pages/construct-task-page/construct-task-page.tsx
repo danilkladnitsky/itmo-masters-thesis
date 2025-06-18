@@ -8,6 +8,7 @@ import { useEffect, useMemo, useState } from "react"
 import { useNavigate } from "react-router"
 import { useAppContext } from "@/context/app-context"
 import { ProgressBar } from "@/ui/progress-bar/progress-bar"
+import { APP_CONFIG } from "@/config"
 
 export const ConstructTaskPage = () => {
     const { generateWordBundles, generateGapTask, llmProvider, wordBundles, generatedTaskCount } = useAppContext()
@@ -45,7 +46,6 @@ export const ConstructTaskPage = () => {
         return wordBundles.map((bundle) => ({
             word: bundle.words[0],
             subtitle: bundle.bundleName,
-            badge: 'HSK 1',
             id: bundle.id
         }))
     }, [wordBundles])
@@ -61,13 +61,13 @@ export const ConstructTaskPage = () => {
 
 
     const totalProgress = useMemo(() => {
-        return generatedTaskCount / Math.min(words.length, 6) * 100
+        return generatedTaskCount / Math.min(words.length, APP_CONFIG.MAX_TASK_COUNT) * 100
     }, [generatedTaskCount, words.length])
 
     if (isGenerating && llmProvider === 'local') {
         return <PageWrapper>
             <Stack gap={16} className={styles.constructorContainer}>
-                <ProgressBar animated color="grape" value={totalProgress} currentStep={generatedTaskCount} totalSteps={Math.min(words.length, 6)} onClose={() => {
+                <ProgressBar animated color="grape" value={totalProgress} currentStep={generatedTaskCount} totalSteps={Math.min(words.length, APP_CONFIG.MAX_TASK_COUNT)} onClose={() => {
                     window.location.reload()
                 }} />
                 <Center>
@@ -103,7 +103,7 @@ export const ConstructTaskPage = () => {
                     <SimpleGrid cols={2} spacing={8}>
                         {
                             bundles.map((group) => (
-                                <WordCard selected={selectedBundleIds.includes(group.id)} onClick={() => handleWordClick(group.id)} key={group.word} word={group.word} subtitle={group.subtitle} badge={group.badge} />
+                                <WordCard selected={selectedBundleIds.includes(group.id)} onClick={() => handleWordClick(group.id)} key={group.word} word={group.word} subtitle={group.subtitle} />
                             ))
                         }
                     </SimpleGrid>
