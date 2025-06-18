@@ -9,7 +9,15 @@ services:
     volumes:
       - ollama_data:/root/.ollama
     restart: unless-stopped
-    entrypoint: ["/bin/sh", "-c", "ollama serve & sleep 3 && ollama run qwen3:0.6b --hidethinking  && tail -f /dev/null"]
+    entrypoint: ["/bin/sh", "-c", "ollama serve & sleep 3 && ollama run qwen3:0.6b --hidethinking && tail -f /dev/null"]
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'       # Leaves headroom for the OS
+          memory: 5g         # Keeps ~2GB free for system & Docker overhead
+        reservations:
+          cpus: '1.0'
+          memory: 2g
 
 volumes:
   ollama_data:

@@ -5,6 +5,7 @@ import requests
 PATH_TO_WORD_BUNDLES = "data/word_bundles.json"
 MAX_WORDS_IN_TASK = 10
 OLLAMA_URL = "http://localhost:11434/api/generate"
+OLLAMA_URL = "https://ollama-daimao.1431207-ck39036.tw1.ru/api/generate"
 OLLAMA_MODEL = "qwen3:0.6b"
 
 class GapTaskService:
