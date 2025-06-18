@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { PageWrapper } from "@/ui/page-wrapper/page-wrapper"
 import { WordCard } from "@/ui/word-card/word-card"
-import { Box, Button, Center, SimpleGrid, Skeleton, Stack, Text } from "@mantine/core"
+import { Box, Button, Center, Progress, SimpleGrid, Skeleton, Stack, Text } from "@mantine/core"
 
 import styles from './construct-task-page.module.scss'
 import { useEffect, useMemo, useState } from "react"
@@ -71,6 +71,8 @@ export const ConstructTaskPage = () => {
                     <ProgressBar animated color="grape" value={totalProgress} currentStep={generatedTaskCount} totalSteps={Math.min(words.length, APP_CONFIG.MAX_TASK_COUNT)} onClose={() => {
                         window.location.reload()
                     }} />}
+                {llmProvider === 'api'
+                    && <Progress size='sm' animated value={100} />}
                 <Center>
                     <Text>Генерируем задания с помощью ИИ...</Text>
                 </Center>
