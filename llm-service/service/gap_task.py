@@ -1,6 +1,7 @@
 import json
 import random
 import requests
+import jieba
 
 PATH_TO_WORD_BUNDLES = "data/word_bundles.json"
 MAX_WORDS_IN_TASK = 5
@@ -55,7 +56,7 @@ class GapTaskService:
                 "id": id_counter,
                 "answer": word,
                 "options": options,
-                "sentence": gap_sentence.split()
+                "sentence": list(jieba.cut(gap_sentence))
             })
 
             id_counter += 1

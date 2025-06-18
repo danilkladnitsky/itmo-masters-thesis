@@ -7,3 +7,4 @@ torch==2.1.0
 transformers==4.51.3
 datasets==2.14.5
 python-dotenv==1.0.1
+jieba==0.42.1
